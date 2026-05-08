@@ -266,12 +266,12 @@ function updateRegisterPageHTML() {
         </div>
 
         <button class="btn-primary" id="btn-register">
-          <span class="btn-text">
-            Boshlash 🚀
-          </span>
+  <span class="btn-text">
+    Boshlash 🚀
+  </span>
 
-          <div class="btn-glow"></div>
-        </button>
+  <div class="btn-glow"></div>
+</button>
 
       </div>
 
