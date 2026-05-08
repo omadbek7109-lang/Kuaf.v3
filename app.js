@@ -142,41 +142,152 @@ function checkAndResetSpins() {
 
 // ==================== USER SYSTEM ====================
 function handleRegister() {
-  const name = document.getElementById('reg-name')?.value.trim();
-  const phone = document.getElementById('reg-phone')?.value.trim();
-  const uni = document.getElementById('reg-uni')?.value;
-  
-  if (!name || !phone || !uni) {
-    showToast("Iltimos, barcha maydonlarni to'ldiring", "warning");
-    hapticImpact('error');
-    return;
-  }
-  
-  if (phone.length < 9) {
-    showToast("Telefon raqam to'liq emas", "warning");
-    return;
-  }
-  
-  state.currentUser = {
-    id: Date.now(),
-    name: name,
-    phone: '+998' + phone,
-    university: uni,
-    diamonds: 100,
-    cashback: 0,
-    totalOrders: 0,
-    level: 1,
-    xp: 0,
-    joinDate: new Date().toISOString(),
-    isAdmin: name === "Admin Admin" && phone === "999999999"
-  };
-  
-  saveToLocalStorage();
-  hideSplashAndShowApp();
-  updateAllUI();
-  showToast(`Xush kelibsiz, ${name}! 🎉`, "success");
-  hapticImpact('success');
+const name = document.getElementById('reg-name')?.value.trim();
+const phone = document.getElementById('reg-phone')?.value.trim();
+
+const btn = document.getElementById('btn-register');
+const btnText = btn?.querySelector('.btn-text');
+
+if (btnText) {
+btnText.style.animation = 'none';
+btnText.offsetHeight;
+btnText.style.animation =
+'btnSpinPress 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
 }
+
+if (!name || !phone) {
+showToast("Iltimos, ism va telefon raqamni to'ldiring", "warning");
+hapticImpact('error');
+return;
+}
+
+if (phone.length < 9) {
+showToast("Telefon raqam to'liq emas", "warning");
+return;
+}
+
+const isAdmin =
+name === "Admin Admin" && phone === "999999999";
+
+state.currentUser = {
+id: Date.now(),
+name: name,
+phone: '+998' + phone,
+university: 'default',
+diamonds: 100,
+cashback: 0,
+totalOrders: 0,
+level: 1,
+xp: 0,
+joinDate: new Date().toISOString(),
+isAdmin: isAdmin
+};
+
+saveToLocalStorage();
+
+const registerPage = document.getElementById('register-page');
+
+if (registerPage) {
+registerPage.style.animation =
+'containerFloatUp 0.5s reverse';
+}
+
+setTimeout(() => {
+hideSplashAndShowApp();
+showToast(
+"Xush kelibsiz, ${name.split(' ')[0]}! 🎉",
+"success"
+);
+hapticImpact('success');
+}, 400);
+}
+  
+function updateRegisterPageHTML() {
+  const registerPage = document.getElementById('register-page');
+
+  if (!registerPage) return;
+
+  registerPage.innerHTML = `
+    <div class="register-container">
+
+      <div class="reg-header">
+        <div class="reg-logo">
+          <span>🍽️</span>
+        </div>
+
+        <h2 class="reg-title">Nima yeymiz?</h2>
+
+        <p class="reg-subtitle">
+          Smart food ordering
+        </p>
+      </div>
+
+      <div class="reg-form-card">
+
+        <div class="form-step">
+          <label class="form-label">
+            To'liq ismingiz
+          </label>
+
+          <div class="form-input-wrap">
+            <span class="input-icon">👤</span>
+
+            <input
+              type="text"
+              id="reg-name"
+              class="form-input"
+              placeholder="Ism Familiya"
+              autocomplete="name"
+            />
+          </div>
+        </div>
+
+        <div class="form-step">
+          <label class="form-label">
+            Telefon raqam
+          </label>
+
+          <div class="form-input-wrap">
+            <span class="input-icon">📱</span>
+
+            <span class="phone-prefix">
+              +998
+            </span>
+
+            <input
+              type="tel"
+              id="reg-phone"
+              class="form-input phone-input"
+              placeholder="90 123 45 67"
+              maxlength="12"
+              inputmode="numeric"
+            />
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn-register">
+          <span class="btn-text">
+            Boshlash 🚀
+          </span>
+
+          <div class="btn-glow"></div>
+        </button>
+
+      </div>
+
+      <p class="reg-footer-text">
+        SMS tasdiqnomasiz tezkor kirish
+      </p>
+
+    </div>
+  `;
+
+  const registerBtn = document.getElementById('btn-register');
+
+  if (registerBtn) {
+    registerBtn.onclick = handleRegister;
+  }
+     }
 
 function hideSplashAndShowApp() {
   const splash = document.getElementById('splash-screen');
