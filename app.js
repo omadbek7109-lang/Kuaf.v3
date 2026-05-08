@@ -1,9 +1,3 @@
-/* ============================================================
-   NIMA YEYMIZ? — COMPLETE APP LOGIC
-   Telegram Mini App | Vanilla JS | ES6+ | Production Ready
-   ============================================================ */
-
-// ==================== GLOBAL STATE ====================
 const state = {
   currentUser: null,
   currentPage: 'home',
