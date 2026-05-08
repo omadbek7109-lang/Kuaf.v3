@@ -147,8 +147,8 @@
   left: 50px;
   font-size: 16px;
   font-weight: 600;
-  color: #00ff88;
-  font-family: 'Orbitron', monospace;
+  color: #b8ffda;
+  opacity: 0.9;
 }
 
 .form-input {
