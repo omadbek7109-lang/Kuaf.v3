@@ -200,11 +200,8 @@ showToast(
 );
 hapticImpact('success');
 }, 400);
-} <button class="btn-primary" id="btn-register">
-  <span class="btn-text">Boshlash 🚀</span>
-  <div class="btn-glow"></div>
-</button>
-  
+} 
+ 
 function updateRegisterPageHTML() {
   const registerPage = document.getElementById('register-page');
 
