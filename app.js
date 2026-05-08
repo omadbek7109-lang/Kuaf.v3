@@ -1568,7 +1568,8 @@ function initSplash() {
 }
 
 // ==================== INITIALIZATION ====================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
+   updateRegisterPageHTML();
   initTelegram();
   loadFromLocalStorage();
   
