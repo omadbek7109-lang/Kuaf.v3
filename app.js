@@ -274,16 +274,15 @@ function updateRegisterPageHTML() {
   }
 }
               
-
 function hideSplashAndShowApp() {
   const splash = document.getElementById('splash-screen');
   const register = document.getElementById('register-page');
   const mainApp = document.getElementById('main-app');
-  
+
   if (splash) splash.style.display = 'none';
   if (register) register.classList.add('hidden');
   if (mainApp) mainApp.classList.remove('hidden');
-  
+
   navigate('home');
   renderHomePage();
   renderMenuPage();
