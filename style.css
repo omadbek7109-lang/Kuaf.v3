@@ -1,3 +1,291 @@
+/* ==================== YANGI REGISTRATION PAGE ==================== */
+.page-register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 30% 40%, #0a1a0a 0%, #020302 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-register::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%);
+  animation: bgPulse 8s infinite;
+  pointer-events: none;
+}
+
+@keyframes bgPulse {
+  0%, 100% { transform: translate(-20%, -20%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-10%, -10%) scale(1.1); opacity: 0.8; }
+}
+
+.register-container {
+  width: 100%;
+  max-width: 360px;
+  padding: 24px;
+  z-index: 10;
+  animation: containerFloat 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+@keyframes containerFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.92);
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Logo header */
+.reg-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.reg-logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 40px rgba(0,255,136,0.4);
+  animation: logoGlow 2s infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,255,136,0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 50px rgba(0,255,136,0.7); transform: scale(1.02); }
+}
+
+.reg-logo span {
+  font-size: 44px;
+  filter: drop-shadow(0 0 5px white);
+}
+
+.reg-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #00ff88);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+
+.reg-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+}
+
+/* Form card - glassmorphism premium */
+.reg-form-card {
+  background: rgba(10, 15, 10, 0.55);
+  backdrop-filter: blur(20px);
+  border-radius: 40px;
+  padding: 32px 28px;
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* Form steps */
+.form-step {
+  margin-bottom: 28px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(0,255,136,0.8);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.form-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.4);
+  border-radius: 60px;
+  border: 1.5px solid rgba(0,255,136,0.3);
+  transition: all 0.3s ease;
+}
+
+.form-input-wrap:focus-within {
+  border-color: #00ff88;
+  box-shadow: 0 0 20px rgba(0,255,136,0.3);
+  transform: scale(1.01);
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.phone-prefix {
+  position: absolute;
+  left: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00ff88;
+  font-family: 'Orbitron', monospace;
+}
+
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 16px 20px 16px 50px;
+  font-size: 16px;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  outline: none;
+}
+
+.phone-input {
+  padding-left: 95px;
+}
+
+.form-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+/* Button premium with spin animation */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  border: none;
+  padding: 16px;
+  border-radius: 60px;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Orbitron', monospace;
+  color: #050505;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Aylanadigan hover animatsiyasi - tugma ustiga kelganda */
+.btn-primary:hover .btn-text {
+  animation: textSpin 0.6s ease;
+}
+
+@keyframes textSpin {
+  0% { transform: rotate(0deg); display: inline-block; }
+  100% { transform: rotate(360deg); display: inline-block; }
+}
+
+/* Bosganda aylanadigan effekt */
+.btn-primary:active .btn-text {
+  animation: btnSpinPress 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: inline-block;
+}
+
+@keyframes btnSpinPress {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:active .btn-glow {
+  left: 100%;
+}
+
+/* Footer text */
+.reg-footer-text {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+}
+
+/* Background blobs */
+.register-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.reg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: blobFloat 12s infinite ease-in-out;
+}
+
+.blob-1 {
+  width: 300px;
+  height: 300px;
+  background: #00ff88;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: #00cc6a;
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 3s;
+}
+
+.blob-3 {
+  width: 200px;
+  height: 200px;
+  background: #00ffaa;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 6s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 20px) scale(1.1); }
+}
 /* ============================================================
    NIMA YEYMIZ? — ULTRA PREMIUM FUTURISTIC STYLE
    Telegram Mini App | Mobile-First | 60fps Animations
