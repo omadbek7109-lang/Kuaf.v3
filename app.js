@@ -201,7 +201,7 @@ showToast(
 hapticImpact('success');
 }, 400);
 } 
- 
+
 function updateRegisterPageHTML() {
   const registerPage = document.getElementById('register-page');
 
@@ -216,18 +216,13 @@ function updateRegisterPageHTML() {
         </div>
 
         <h2 class="reg-title">Nima yeymiz?</h2>
-
-        <p class="reg-subtitle">
-          Smart food ordering
-        </p>
+        <p class="reg-subtitle">Smart food ordering</p>
       </div>
 
       <div class="reg-form-card">
 
         <div class="form-step">
-          <label class="form-label">
-            To'liq ismingiz
-          </label>
+          <label class="form-label">To'liq ismingiz</label>
 
           <div class="form-input-wrap">
             <span class="input-icon">👤</span>
@@ -237,41 +232,31 @@ function updateRegisterPageHTML() {
               id="reg-name"
               class="form-input"
               placeholder="Ism Familiya"
-              autocomplete="name"
             />
           </div>
         </div>
 
         <div class="form-step">
-          <label class="form-label">
-            Telefon raqam
-          </label>
+          <label class="form-label">Telefon raqam</label>
 
           <div class="form-input-wrap">
             <span class="input-icon">📱</span>
 
-            <span class="phone-prefix">
-              +998
-            </span>
+            <span class="phone-prefix">+998</span>
 
             <input
               type="tel"
               id="reg-phone"
               class="form-input phone-input"
               placeholder="90 123 45 67"
-              maxlength="12"
-              inputmode="numeric"
             />
           </div>
         </div>
 
         <button class="btn-primary" id="btn-register">
-  <span class="btn-text">
-    Boshlash 🚀
-  </span>
-
-  <div class="btn-glow"></div>
-</button>
+          <span class="btn-text">Boshlash 🚀</span>
+          <div class="btn-glow"></div>
+        </button>
 
       </div>
 
@@ -287,7 +272,8 @@ function updateRegisterPageHTML() {
   if (registerBtn) {
     registerBtn.onclick = handleRegister;
   }
-     }
+}
+              
 
 function hideSplashAndShowApp() {
   const splash = document.getElementById('splash-screen');
