@@ -1,986 +1,488 @@
 <!DOCTYPE html>
-<html lang="uz" data-theme="dark">
+<html lang="uz" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0a0f0a" />
-  <meta name="description" content="Nima yeymiz? — University smart food ordering app" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Nima yeymiz?</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Nima yeymiz?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
-  <!-- ============================================================
-       SPLASH SCREEN
-       ============================================================ -->
-  <div id="splash-screen" class="splash">
-    <!-- Animated background particles -->
-    <div class="splash-bg">
-      <div class="splash-particle" style="--x:10%;--y:20%;--d:3s;--s:6px"></div>
-      <div class="splash-particle" style="--x:80%;--y:10%;--d:2.5s;--s:4px"></div>
-      <div class="splash-particle" style="--x:60%;--y:70%;--d:4s;--s:8px"></div>
-      <div class="splash-particle" style="--x:30%;--y:85%;--d:3.5s;--s:5px"></div>
-      <div class="splash-particle" style="--x:90%;--y:50%;--d:2s;--s:3px"></div>
-      <div class="splash-particle" style="--x:20%;--y:60%;--d:4.5s;--s:7px"></div>
-      <div class="splash-particle" style="--x:50%;--y:15%;--d:3s;--s:4px"></div>
-      <div class="splash-particle" style="--x:70%;--y:90%;--d:2.8s;--s:6px"></div>
-    </div>
-
-    <!-- Glow rings -->
-    <div class="splash-glow-ring ring-1"></div>
-    <div class="splash-glow-ring ring-2"></div>
-    <div class="splash-glow-ring ring-3"></div>
-
-    <!-- Logo container -->
-    <div class="splash-content">
-      <!-- Animated leaf decorations -->
-      <div class="splash-leaves">
-        <span class="leaf leaf-1">🌿</span>
-        <span class="leaf leaf-2">🍃</span>
-        <span class="leaf leaf-3">🌱</span>
-        <span class="leaf leaf-4">🍀</span>
-        <span class="leaf leaf-5">🌿</span>
-      </div>
-
-      <!-- Logo icon -->
-      <div class="splash-logo-icon">
-        <div class="logo-inner">
-          <span class="logo-emoji">🍽️</span>
-        </div>
-        <div class="logo-pulse-ring"></div>
-        <div class="logo-pulse-ring ring-delay"></div>
-      </div>
-
-      <!-- App title -->
-      <h1 class="splash-title">
-        <span class="title-line-1">Nima</span>
-        <span class="title-line-2">yeymiz?</span>
-      </h1>
-
-      <!-- Tagline -->
-      <p class="splash-tagline" id="splash-tagline">Ovqatni tez tanlang</p>
-
-      <!-- Loading bar -->
-      <div class="splash-loader">
-        <div class="loader-track">
-          <div class="loader-fill" id="loader-fill"></div>
-        </div>
-        <span class="loader-percent" id="loader-percent">0%</span>
-      </div>
-    </div>
+<!-- ═══ SPLASH ═══ -->
+<div id="splash" class="splash">
+  <div class="splash-blobs">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   </div>
-  <!-- END SPLASH SCREEN -->
-
-
-  <!-- ============================================================
-       REGISTRATION PAGE
-       ============================================================ -->
-  <div id="register-page" class="page page-register hidden">
-    <!-- Background decoration -->
-    <div class="register-bg">
-      <div class="reg-blob blob-1"></div>
-      <div class="reg-blob blob-2"></div>
-      <div class="reg-blob blob-3"></div>
-    </div>
-
-    <div class="register-container">
-      <!-- Top logo -->
-      <div class="reg-header">
-        <div class="reg-logo">
-          <span>🍽️</span>
-        </div>
-        <h2 class="reg-title" data-uz="Xush kelibsiz!" data-ru="Добро пожаловать!">Xush kelibsiz!</h2>
-        <p class="reg-subtitle" data-uz="Tezkor ovqat buyurtmasi platformasi" data-ru="Платформа быстрого заказа еды">Tezkor ovqat buyurtmasi platformasi</p>
-      </div>
-
-      <!-- Registration form -->
-      <div class="reg-form-card">
-        <!-- Step 1: Name -->
-        <div class="form-step active" id="step-name">
-          <label class="form-label" data-uz="To'liq ismingiz" data-ru="Полное имя">To'liq ismingiz</label>
-          <div class="form-input-wrap">
-            <span class="input-icon">👤</span>
-            <input
-              type="text"
-              id="reg-name"
-              class="form-input"
-              placeholder="Ism Familiya"
-              autocomplete="name"
-              maxlength="50"
-            />
-          </div>
-        </div>
-
-        <!-- Step 2: Phone -->
-        <div class="form-step active" id="step-phone">
-          <label class="form-label" data-uz="Telefon raqamingiz" data-ru="Номер телефона">Telefon raqamingiz</label>
-          <div class="form-input-wrap">
-            <span class="input-icon">📱</span>
-            <span class="phone-prefix">+998</span>
-            <input
-              type="tel"
-              id="reg-phone"
-              class="form-input phone-input"
-              placeholder="90 123 45 67"
-              maxlength="12"
-              inputmode="numeric"
-            />
-          </div>
-        </div>
-
-
-  <!-- ============================================================
-       MAIN APP WRAPPER
-       ============================================================ -->
-  <div id="main-app" class="app-wrapper hidden">
-
-    <!-- ── TOP STATUS BAR ── -->
-    <div class="top-bar" id="top-bar">
-      <div class="top-bar-left">
-        <div class="top-logo-small">🍽️</div>
-        <span class="top-app-name">Nima yeymiz?</span>
-      </div>
-      <div class="top-bar-right">
-        <!-- Diamond balance -->
-        <div class="top-balance" id="top-diamond-balance">
-          <span class="balance-icon">💎</span>
-          <span class="balance-val" id="hdr-diamonds">0</span>
-        </div>
-        <!-- Cashback balance -->
-        <div class="top-balance" id="top-cash-balance">
-          <span class="balance-icon">💵</span>
-          <span class="balance-val" id="hdr-cashback">0</span>
-        </div>
-        <!-- Notification bell -->
-        <button class="icon-btn" id="btn-notifications" onclick="toggleNotifications()">
-          <span>🔔</span>
-          <span class="notif-dot hidden" id="notif-dot"></span>
-        </button>
+  <div class="splash-inner">
+    <div class="splash-logo-wrap">
+      <div class="splash-icon-ring">
+        <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=80&q=80" alt="" class="splash-food-img"/>
       </div>
     </div>
+    <h1 class="splash-title">Nima yeymiz?</h1>
+    <p class="splash-sub">Tez · Qulay · Mazali</p>
+    <div class="splash-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
 
-    <!-- ── NOTIFICATION DROPDOWN ── -->
-    <div class="notif-panel hidden" id="notif-panel">
-      <div class="notif-header" data-uz="Bildirishnomalar" data-ru="Уведомления">Bildirishnomalar</div>
-      <div class="notif-list" id="notif-list">
-        <!-- dynamically filled by JS -->
+<!-- ═══ AUTH ═══ -->
+<div id="screen-auth" class="screen hidden">
+  <div class="auth-bg">
+    <div class="auth-food-grid">
+      <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=200&q=70" alt=""/>
+      <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=200&q=70" alt=""/>
+      <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&q=70" alt=""/>
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&q=70" alt=""/>
+    </div>
+    <div class="auth-overlay"></div>
+  </div>
+  <div class="auth-card">
+    <div class="auth-handle"></div>
+    <div class="auth-logo-row">
+      <div class="auth-logo-icon">🍽️</div>
+      <div>
+        <h2 class="auth-title">Nima yeymiz?</h2>
+        <p class="auth-subtitle">Tezkor ovqat buyurtma platformasi</p>
       </div>
     </div>
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: HOME
-    ══════════════════════════════════════════ -->
-    <div class="page-content active" id="page-home">
-
-      <!-- Greeting section -->
-      <div class="home-greeting">
-        <div class="greeting-text">
-          <p class="greeting-sub" id="greeting-time-text">Xayrli tong!</p>
-          <h2 class="greeting-name" id="greeting-name">Foydalanuvchi 👋</h2>
-        </div>
-        <div class="greeting-avatar" id="greeting-avatar" onclick="navigate('profile')">
-          <span id="avatar-initials">U</span>
-        </div>
+    <div class="auth-fields">
+      <div class="field-wrap">
+        <input type="text" id="inp-name" class="field-input" placeholder=" " autocomplete="name"/>
+        <label class="field-label">To'liq ismingiz</label>
+        <span class="field-icon">👤</span>
+        <span class="field-err" id="err-name"></span>
       </div>
-
-      <!-- Balance cards row -->
-      <div class="balance-row">
-        <div class="balance-card card-diamond">
-          <div class="bc-icon">💎</div>
-          <div class="bc-info">
-            <span class="bc-label" data-uz="Olmoslar" data-ru="Алмазы">Olmoslar</span>
-            <span class="bc-value" id="home-diamonds">0</span>
-          </div>
-          <div class="bc-glow"></div>
+      <div class="field-wrap">
+        <div class="phone-row">
+          <div class="phone-code">+998</div>
+          <input type="tel" id="inp-phone" class="field-input phone-bare" placeholder=" " maxlength="12" inputmode="numeric"/>
+          <label class="field-label phone-lbl">Telefon raqam</label>
         </div>
-        <div class="balance-card card-cashback">
-          <div class="bc-icon">💵</div>
-          <div class="bc-info">
-            <span class="bc-label" data-uz="Keshbek" data-ru="Кешбэк">Keshbek</span>
-            <span class="bc-value" id="home-cashback">0 so'm</span>
-          </div>
-          <div class="bc-glow"></div>
-        </div>
-        <div class="balance-card card-level">
-          <div class="bc-icon">⚡</div>
-          <div class="bc-info">
-            <span class="bc-label" data-uz="Daraja" data-ru="Уровень">Daraja</span>
-            <span class="bc-value" id="home-level">1</span>
-          </div>
-          <div class="bc-glow"></div>
-        </div>
-      </div>
-
-      <!-- Search bar -->
-      <div class="search-bar-wrap">
-        <div class="search-bar">
-          <span class="search-icon">🔍</span>
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Ovqat qidiring..."
-            oninput="handleSearch(this.value)"
-          />
-          <button class="search-clear hidden" id="search-clear" onclick="clearSearch()">✕</button>
-        </div>
-      </div>
-
-      <!-- Search results (hidden by default) -->
-      <div class="search-results hidden" id="search-results">
-        <h3 class="section-title" data-uz="Qidiruv natijalari" data-ru="Результаты поиска">Qidiruv natijalari</h3>
-        <div class="food-grid" id="search-food-grid"></div>
-      </div>
-
-      <!-- Category filters -->
-      <div class="categories-section" id="home-categories-section">
-        <h3 class="section-title" data-uz="Kategoriyalar" data-ru="Категории">Kategoriyalar</h3>
-        <div class="categories-scroll" id="categories-scroll">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-      <!-- Featured banner -->
-      <div class="featured-banner" id="featured-banner">
-        <div class="banner-content">
-          <div class="banner-text">
-            <span class="banner-badge" data-uz="Bugungi maxsus taklif" data-ru="Специальное предложение дня">Bugungi maxsus taklif</span>
-            <h3 class="banner-title" id="banner-food-name">Osh + Salat</h3>
-            <p class="banner-price">
-              <span id="banner-price">15 000</span>
-              <span data-uz=" so'm" data-ru=" сум"> so'm</span>
-            </p>
-            <button class="btn-banner" onclick="addFeaturedToCart()">
-              <span data-uz="Buyurtma berish" data-ru="Заказать">Buyurtma berish</span>
-            </button>
-          </div>
-          <div class="banner-image" id="banner-img">🍛</div>
-        </div>
-        <div class="banner-glow"></div>
-      </div>
-
-      <!-- Recommended foods -->
-      <div class="recommended-section" id="home-food-section">
-        <div class="section-header">
-          <h3 class="section-title" data-uz="Tavsiya etilgan" data-ru="Рекомендуемые">Tavsiya etilgan</h3>
-          <button class="see-all-btn" onclick="navigate('menu')" data-uz="Barchasi" data-ru="Все">Barchasi</button>
-        </div>
-        <div class="food-grid" id="home-food-grid">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-      <!-- Daily challenge -->
-      <div class="daily-challenge">
-        <div class="challenge-header">
-          <span class="challenge-icon">🎯</span>
-          <div>
-            <h4 class="challenge-title" data-uz="Kunlik vazifa" data-ru="Ежедневное задание">Kunlik vazifa</h4>
-            <p class="challenge-desc" id="daily-challenge-text">3 ta ovqat buyurtma bering — 50 💎 yutib oling</p>
-          </div>
-        </div>
-        <div class="challenge-progress-bar">
-          <div class="challenge-fill" id="challenge-fill" style="width: 0%"></div>
-        </div>
-        <span class="challenge-progress-text" id="challenge-text">0 / 3</span>
-      </div>
-
-    </div>
-    <!-- END PAGE HOME -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: MENU
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-menu">
-
-      <div class="page-header">
-        <h2 class="page-title" data-uz="Menyu" data-ru="Меню">Menyu</h2>
-        <!-- Cart quick access -->
-        <button class="cart-header-btn" onclick="toggleCart()">
-          <span>🛒</span>
-          <span class="cart-count-badge" id="menu-cart-count">0</span>
-        </button>
-      </div>
-
-      <!-- Category tabs for menu -->
-      <div class="menu-category-tabs" id="menu-category-tabs">
-        <!-- filled by JS -->
-      </div>
-
-      <!-- Food list -->
-      <div class="menu-food-list" id="menu-food-list">
-        <!-- filled by JS -->
-      </div>
-
-    </div>
-    <!-- END PAGE MENU -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: ROULETTE
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-roulette">
-
-      <div class="page-header">
-        <h2 class="page-title" data-uz="Aylantirish" data-ru="Рулетка">Aylantirish</h2>
-        <div class="roulette-spins-left">
-          <span class="spin-icon">🎰</span>
-          <span id="spins-left-count">3</span>
-          <span class="spin-label" data-uz=" marta" data-ru=" раз"> marta</span>
-        </div>
-      </div>
-
-      <!-- Roulette headline -->
-      <p class="roulette-headline" data-uz="Nima yeyishni bilmayapsizmi? Aylantiring!" data-ru="Не знаете что есть? Покрутите!">
-        Nima yeyishni bilmayapsizmi? Aylantiring!
-      </p>
-
-      <!-- The Wheel -->
-      <div class="roulette-stage">
-        <!-- Outer glow rings -->
-        <div class="wheel-glow-ring wgr-1"></div>
-        <div class="wheel-glow-ring wgr-2"></div>
-        <div class="wheel-glow-ring wgr-3"></div>
-
-        <!-- Pointer / arrow at top -->
-        <div class="wheel-pointer">▼</div>
-
-        <!-- Canvas wheel -->
-        <div class="wheel-container">
-          <canvas id="roulette-canvas" width="320" height="320"></canvas>
-        </div>
-
-        <!-- Center spin button -->
-        <button class="spin-center-btn" id="spin-btn" onclick="spinRoulette()">
-          <span class="spin-btn-icon">🎲</span>
-          <span class="spin-btn-label" data-uz="SPIN" data-ru="SPIN">SPIN</span>
-          <div class="spin-btn-glow"></div>
-        </button>
-      </div>
-
-      <!-- Spin stats row -->
-      <div class="spin-stats-row">
-        <div class="spin-stat">
-          <span class="stat-emoji">🎰</span>
-          <span class="stat-label" data-uz="Bugungi spinlar" data-ru="Спины сегодня">Bugungi spinlar</span>
-          <span class="stat-val" id="today-spins-used">0 / 3</span>
-        </div>
-        <div class="spin-stat">
-          <span class="stat-emoji">💎</span>
-          <span class="stat-label" data-uz="Yutilgan" data-ru="Выиграно">Yutilgan</span>
-          <span class="stat-val" id="total-won-diamonds">0</span>
-        </div>
-      </div>
-
-      <!-- Result card (hidden until spin) -->
-      <div class="roulette-result hidden" id="roulette-result">
-        <div class="result-glow-bg"></div>
-        <div class="result-content">
-          <div class="result-emoji" id="result-emoji">🍔</div>
-          <h3 class="result-food-name" id="result-food-name">Burger</h3>
-          <div class="result-details">
-            <span class="result-price" id="result-price">12 000 so'm</span>
-            <span class="result-diamonds" id="result-diamonds">+10 💎</span>
-          </div>
-          <div class="result-actions">
-            <button class="btn-primary result-btn-add" id="result-add-btn" onclick="addRouletteResultToCart()">
-              <span data-uz="Savatga qo'shish 🛒" data-ru="В корзину 🛒">Savatga qo'shish 🛒</span>
-            </button>
-            <button class="btn-secondary result-btn-spin" onclick="spinRoulette()">
-              <span data-uz="Yana aylantirish 🔄" data-ru="Крутить снова 🔄">Yana aylantirish 🔄</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent wins ticker -->
-      <div class="wins-ticker-section">
-        <h4 class="wins-title" data-uz="So'nggi yutuqlar" data-ru="Последние выигрыши">So'nggi yutuqlar</h4>
-        <div class="wins-ticker" id="wins-ticker">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-    </div>
-    <!-- END PAGE ROULETTE -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: REWARDS
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-rewards">
-
-      <div class="page-header">
-        <h2 class="page-title" data-uz="Mukofotlar" data-ru="Награды">Mukofotlar</h2>
-      </div>
-
-      <!-- User rank card -->
-      <div class="rank-hero-card">
-        <div class="rank-glow"></div>
-        <div class="rank-left">
-          <div class="rank-badge-big" id="rank-badge-big">🥉</div>
-          <div>
-            <p class="rank-level-label" data-uz="Darajangiz" data-ru="Ваш уровень">Darajangiz</p>
-            <h3 class="rank-level-name" id="rank-level-name">Yangi boshlovchi</h3>
-          </div>
-        </div>
-        <div class="rank-right">
-          <span class="rank-diamonds-big" id="rank-diamonds-big">0 💎</span>
-          <p class="rank-next-text" id="rank-next-text">Keyingi daraja: 100 💎</p>
-        </div>
-      </div>
-
-      <!-- XP progress bar -->
-      <div class="xp-bar-section">
-        <div class="xp-bar-track">
-          <div class="xp-bar-fill" id="xp-bar-fill" style="width: 0%"></div>
-        </div>
-        <div class="xp-bar-labels">
-          <span>0</span>
-          <span id="xp-next-level">100 💎</span>
-        </div>
-      </div>
-
-      <!-- Reward shop cards -->
-      <h3 class="section-title" data-uz="Mukofot do'koni" data-ru="Магазин наград">Mukofot do'koni</h3>
-      <div class="rewards-shop-grid" id="rewards-shop-grid">
-        <!-- filled by JS -->
-      </div>
-
-      <!-- Leaderboard -->
-      <div class="leaderboard-section">
-        <div class="section-header">
-          <h3 class="section-title" data-uz="Reyting" data-ru="Рейтинг">Reyting</h3>
-          <div class="lb-tabs">
-            <button class="lb-tab active" onclick="switchLeaderboard('weekly')" data-uz="Haftalik" data-ru="Нед.">Haftalik</button>
-            <button class="lb-tab" onclick="switchLeaderboard('monthly')" data-uz="Oylik" data-ru="Мес.">Oylik</button>
-          </div>
-        </div>
-        <div class="leaderboard-list" id="leaderboard-list">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-      <!-- Monthly gift banner -->
-      <div class="monthly-gift-banner">
-        <span class="gift-icon">🎁</span>
-        <div class="gift-text">
-          <h4 data-uz="Oylik sovg'a" data-ru="Ежемесячный подарок">Oylik sovg'a</h4>
-          <p data-uz="100 ta buyurtma — premium mukofot!" data-ru="100 заказов — премиум награда!">100 ta buyurtma — premium mukofot!</p>
-        </div>
-        <button class="btn-gift" onclick="claimMonthlyGift()" data-uz="Olish" data-ru="Получить">Olish</button>
-      </div>
-
-    </div>
-    <!-- END PAGE REWARDS -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: PROFILE
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-profile">
-
-      <div class="page-header">
-        <h2 class="page-title" data-uz="Profil" data-ru="Профиль">Profil</h2>
-        <!-- Admin panel link (shown only if admin) -->
-        <button class="admin-btn hidden" id="admin-panel-btn" onclick="navigate('admin')" title="Admin Panel">⚙️</button>
-      </div>
-
-      <!-- Profile hero -->
-      <div class="profile-hero">
-        <div class="profile-avatar-big" id="profile-avatar-big">
-          <span id="profile-initials-big">U</span>
-          <div class="avatar-ring"></div>
-        </div>
-        <div class="profile-hero-info">
-          <h3 class="profile-name" id="profile-name-display">Foydalanuvchi</h3>
-          <p class="profile-phone" id="profile-phone-display">+998 -- --- -- --</p>
-          <p class="profile-uni" id="profile-uni-display">Universitet</p>
-        </div>
-        <button class="profile-edit-btn" onclick="openEditProfile()">✏️</button>
-      </div>
-
-      <!-- Stats row -->
-      <div class="profile-stats-row">
-        <div class="p-stat">
-          <span class="p-stat-val" id="p-total-orders">0</span>
-          <span class="p-stat-label" data-uz="Buyurtmalar" data-ru="Заказы">Buyurtmalar</span>
-        </div>
-        <div class="p-stat divider">
-          <span class="p-stat-val" id="p-diamonds-total">0 💎</span>
-          <span class="p-stat-label" data-uz="Olmoslar" data-ru="Алмазы">Olmoslar</span>
-        </div>
-        <div class="p-stat">
-          <span class="p-stat-val" id="p-cashback-total">0</span>
-          <span class="p-stat-label" data-uz="Keshbek" data-ru="Кешбэк">Keshbek</span>
-        </div>
-      </div>
-
-      <!-- Settings list -->
-      <div class="settings-list">
-
-        <!-- Theme toggle -->
-        <div class="settings-item">
-          <div class="settings-item-left">
-            <span class="settings-icon">🌙</span>
-            <span class="settings-label" data-uz="Qorong'u rejim" data-ru="Тёмный режим">Qorong'u rejim</span>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="theme-toggle" checked onchange="toggleTheme()" />
-            <span class="toggle-track">
-              <span class="toggle-thumb"></span>
-            </span>
-          </label>
-        </div>
-
-        <!-- Language switch -->
-        <div class="settings-item">
-          <div class="settings-item-left">
-            <span class="settings-icon">🌐</span>
-            <span class="settings-label" data-uz="Til" data-ru="Язык">Til</span>
-          </div>
-          <div class="lang-pill-switch">
-            <button class="lang-pill active" id="pill-uz" onclick="switchLang('uz')">UZ</button>
-            <button class="lang-pill" id="pill-ru" onclick="switchLang('ru')">RU</button>
-          </div>
-        </div>
-
-        <!-- Notifications -->
-        <div class="settings-item" onclick="toggleNotifSetting()">
-          <div class="settings-item-left">
-            <span class="settings-icon">🔔</span>
-            <span class="settings-label" data-uz="Bildirishnomalar" data-ru="Уведомления">Bildirishnomalar</span>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="notif-toggle" checked onchange="toggleNotifSetting()" />
-            <span class="toggle-track">
-              <span class="toggle-thumb"></span>
-            </span>
-          </label>
-        </div>
-
-        <!-- Order history -->
-        <div class="settings-item" onclick="navigate('order-history')">
-          <div class="settings-item-left">
-            <span class="settings-icon">📋</span>
-            <span class="settings-label" data-uz="Buyurtmalar tarixi" data-ru="История заказов">Buyurtmalar tarixi</span>
-          </div>
-          <span class="settings-arrow">›</span>
-        </div>
-
-        <!-- FAQ -->
-        <div class="settings-item" onclick="navigate('faq')">
-          <div class="settings-item-left">
-            <span class="settings-icon">❓</span>
-            <span class="settings-label" data-uz="Yordam" data-ru="Помощь">Yordam</span>
-          </div>
-          <span class="settings-arrow">›</span>
-        </div>
-
-        <!-- Admin panel (visible to admins only) -->
-        <div class="settings-item admin-only-item hidden" id="admin-settings-item" onclick="navigate('admin')">
-          <div class="settings-item-left">
-            <span class="settings-icon">⚙️</span>
-            <span class="settings-label" data-uz="Admin panel" data-ru="Панель админа">Admin panel</span>
-          </div>
-          <span class="settings-arrow">›</span>
-        </div>
-
-      </div>
-
-      <!-- Logout button -->
-      <button class="btn-logout" onclick="confirmLogout()">
-        <span>🚪</span>
-        <span data-uz="Chiqish" data-ru="Выйти">Chiqish</span>
-      </button>
-
-    </div>
-    <!-- END PAGE PROFILE -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: ORDER HISTORY
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-order-history">
-      <div class="page-header has-back">
-        <button class="back-btn" onclick="goBack()">‹</button>
-        <h2 class="page-title" data-uz="Buyurtmalar tarixi" data-ru="История заказов">Buyurtmalar tarixi</h2>
-      </div>
-      <div class="order-history-list" id="order-history-list">
-        <!-- filled by JS -->
+        <span class="field-err" id="err-phone"></span>
       </div>
     </div>
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: ADMIN PANEL
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-admin">
-
-      <div class="page-header has-back">
-        <button class="back-btn" onclick="goBack()">‹</button>
-        <h2 class="page-title" data-uz="Admin panel" data-ru="Панель админа">Admin panel</h2>
-        <span class="admin-badge">ADMIN</span>
-      </div>
-
-      <!-- Admin stats -->
-      <div class="admin-stats-row">
-        <div class="admin-stat-card">
-          <span class="admin-stat-icon">🍽️</span>
-          <span class="admin-stat-val" id="admin-total-foods">0</span>
-          <span class="admin-stat-label" data-uz="Ovqatlar" data-ru="Блюда">Ovqatlar</span>
-        </div>
-        <div class="admin-stat-card">
-          <span class="admin-stat-icon">📦</span>
-          <span class="admin-stat-val" id="admin-total-orders">0</span>
-          <span class="admin-stat-label" data-uz="Buyurtmalar" data-ru="Заказы">Buyurtmalar</span>
-        </div>
-        <div class="admin-stat-card">
-          <span class="admin-stat-icon">👥</span>
-          <span class="admin-stat-val" id="admin-total-users">1</span>
-          <span class="admin-stat-label" data-uz="Foydalanuvchilar" data-ru="Пользователи">Foydalanuvchilar</span>
-        </div>
-      </div>
-
-      <!-- Add food form -->
-      <div class="admin-section">
-        <h3 class="admin-section-title" data-uz="Yangi ovqat qo'shish" data-ru="Добавить новое блюдо">Yangi ovqat qo'shish</h3>
-        <div class="admin-form">
-
-          <div class="admin-form-row">
-            <label data-uz="Nomi (UZ)" data-ru="Название (UZ)">Nomi (UZ)</label>
-            <input type="text" id="admin-food-name-uz" class="admin-input" placeholder="Burger" />
-          </div>
-
-          <div class="admin-form-row">
-            <label data-uz="Nomi (RU)" data-ru="Название (RU)">Nomi (RU)</label>
-            <input type="text" id="admin-food-name-ru" class="admin-input" placeholder="Бургер" />
-          </div>
-
-          <div class="admin-form-row">
-            <label data-uz="Narxi (so'm)" data-ru="Цена (сум)">Narxi (so'm)</label>
-            <input type="number" id="admin-food-price" class="admin-input" placeholder="12000" />
-          </div>
-
-          <div class="admin-form-row">
-            <label data-uz="Kategoriya" data-ru="Категория">Kategoriya</label>
-            <select id="admin-food-category" class="admin-input">
-              <option value="all">Barchasi</option>
-              <option value="fastfood">Fast Food</option>
-              <option value="milliy">Milliy taomlar</option>
-              <option value="salad">Salatlar</option>
-              <option value="drinks">Ichimliklar</option>
-              <option value="dessert">Shirinliklar</option>
-            </select>
-          </div>
-
-          <div class="admin-form-row two-col">
-            <div>
-              <label data-uz="Keshbek %" data-ru="Кешбэк %">Keshbek %</label>
-              <input type="number" id="admin-food-cashback" class="admin-input" placeholder="5" min="0" max="30" />
-            </div>
-            <div>
-              <label data-uz="Olmoslar" data-ru="Алмазы">Olmoslar 💎</label>
-              <input type="number" id="admin-food-diamonds" class="admin-input" placeholder="10" min="0" />
-            </div>
-          </div>
-
-          <div class="admin-form-row">
-            <label data-uz="Emoji belgisi" data-ru="Эмодзи">Emoji belgisi</label>
-            <input type="text" id="admin-food-emoji" class="admin-input" placeholder="🍔" maxlength="4" />
-          </div>
-
-          <div class="admin-form-row">
-            <label data-uz="Tavsif (UZ)" data-ru="Описание (UZ)">Tavsif (UZ)</label>
-            <textarea id="admin-food-desc-uz" class="admin-input admin-textarea" placeholder="Mazali go'sht kotleti..."></textarea>
-          </div>
-
-          <button class="btn-primary admin-add-btn" onclick="adminAddFood()">
-            <span data-uz="+ Qo'shish" data-ru="+ Добавить">+ Qo'shish</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Food management list -->
-      <div class="admin-section">
-        <h3 class="admin-section-title" data-uz="Ovqatlarni boshqarish" data-ru="Управление блюдами">Ovqatlarni boshqarish</h3>
-        <div class="admin-food-list" id="admin-food-list">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-    </div>
-    <!-- END PAGE ADMIN -->
-
-
-    <!-- ══════════════════════════════════════════
-         PAGE: FAQ / HELP
-    ══════════════════════════════════════════ -->
-    <div class="page-content" id="page-faq">
-      <div class="page-header has-back">
-        <button class="back-btn" onclick="goBack()">‹</button>
-        <h2 class="page-title" data-uz="Yordam" data-ru="Помощь">Yordam</h2>
-      </div>
-      <div class="faq-list" id="faq-list">
-        <!-- filled by JS -->
-      </div>
-    </div>
-
-
-    <!-- ══════════════════════════════════════════
-         FLOATING CART BUTTON
-    ══════════════════════════════════════════ -->
-    <button class="floating-cart-btn hidden" id="floating-cart-btn" onclick="toggleCart()">
-      <span class="fcart-icon">🛒</span>
-      <span class="fcart-count" id="fcart-count">0</span>
-      <span class="fcart-total" id="fcart-total">0 so'm</span>
-      <div class="fcart-glow"></div>
+    <button class="btn-primary" id="btn-continue">
+      <span>Davom etish</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
+    <p class="auth-terms">Davom etish orqali <span>foydalanish shartlari</span>ga rozilik bildirasiz</p>
+  </div>
+</div>
 
+<!-- ═══ MAIN APP ═══ -->
+<div id="app" class="app hidden">
 
-    <!-- ══════════════════════════════════════════
-         CART SIDEBAR
-    ══════════════════════════════════════════ -->
-    <div class="cart-overlay hidden" id="cart-overlay" onclick="toggleCart()"></div>
-
-    <div class="cart-sidebar hidden" id="cart-sidebar">
-      <div class="cart-header">
-        <h3 class="cart-title">
-          <span>🛒</span>
-          <span data-uz="Savat" data-ru="Корзина">Savat</span>
-          <span class="cart-count-circle" id="cart-sidebar-count">0</span>
-        </h3>
-        <button class="cart-close-btn" onclick="toggleCart()">✕</button>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-loc">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <span>Andijon, KUAF</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-chip">
+        <span>💎</span><span id="top-diamonds">0</span>
       </div>
-
-      <!-- Cart items list -->
-      <div class="cart-items-list" id="cart-items-list">
-        <!-- filled by JS -->
+      <div class="topbar-chip cashback-chip">
+        <span>💰</span><span id="top-cashback">0 so'm</span>
       </div>
+      <button class="avatar-btn" id="btn-avatar"><span id="avatar-letter">A</span></button>
+    </div>
+  </header>
 
-      <!-- Cart empty state -->
-      <div class="cart-empty hidden" id="cart-empty">
-        <span class="cart-empty-icon">🍽️</span>
-        <p data-uz="Savat bo'sh" data-ru="Корзина пуста">Savat bo'sh</p>
-        <button class="btn-secondary cart-go-menu" onclick="navigate('menu'); toggleCart();">
-          <span data-uz="Menyuga o'tish" data-ru="Перейти в меню">Menyuga o'tish</span>
-        </button>
+  <!-- PAGES -->
+  <main class="pages" id="pages">
+
+    <!-- ══ HOME ══ -->
+    <section class="page active" id="page-home">
+      <div class="greeting-bar">
+        <div>
+          <p class="greet-sub" id="greet-line">Xayrli kun!</p>
+          <h2 class="greet-name" id="greet-name">Foydalanuvchi</h2>
+        </div>
+        <div class="greet-badge" id="greet-badge">🥉 Bronze</div>
       </div>
+      <div class="search-wrap">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-inp" class="search-inp" placeholder="Taom qidiring..."/>
+          <button class="s-clear hidden" id="s-clear">✕</button>
+        </div>
+      </div>
+      <div class="cats-wrap">
+        <div class="cats-scroll" id="cats-scroll">
+          <button class="cat-pill active" data-cat="all">Barchasi</button>
+          <button class="cat-pill" data-cat="milliy">🥘 Milliy taomlar</button>
+          <button class="cat-pill" data-cat="burger">🍔 Burger</button>
+          <button class="cat-pill" data-cat="lavash">🌯 Lavash</button>
+          <button class="cat-pill" data-cat="pizza">🍕 Pizza</button>
+          <button class="cat-pill" data-cat="ichimlik">🍵 Ichimliklar</button>
+          <button class="cat-pill" data-cat="salat">🥗 Salatlar</button>
+          <button class="cat-pill" data-cat="shirinlik">🍰 Shirinliklar</button>
+          <button class="cat-pill" data-cat="non">🫓 Non & Patir</button>
+        </div>
+      </div>
+      <div class="banner-wrap">
+        <div class="banner-track" id="banner-track">
+          <div class="banner-slide b-green">
+            <div class="banner-text"><p class="b-tag">Bu hafta</p><h3>3% Cashback</h3><p class="b-sub">Har bir buyurtmadan</p></div>
+            <div class="banner-img"><img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=150&q=80" alt=""/></div>
+          </div>
+          <div class="banner-slide b-orange">
+            <div class="banner-text"><p class="b-tag">Yangilik</p><h3>Ruletka!</h3><p class="b-sub">Kunlik 3ta bepul spin</p></div>
+            <div class="banner-img"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=150&q=80" alt=""/></div>
+          </div>
+          <div class="banner-slide b-purple">
+            <div class="banner-text"><p class="b-tag">Aksiya</p><h3>Payme & Click</h3><p class="b-sub">Qulay to'lov usullari</p></div>
+            <div class="banner-img"><img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=150&q=80" alt=""/></div>
+          </div>
+        </div>
+        <div class="banner-dots" id="banner-dots"></div>
+      </div>
+      <div class="daily-card" id="daily-card">
+        <div class="daily-left">
+          <div class="daily-ico">🎁</div>
+          <div><p class="daily-title">Kunlik bonus</p><p class="daily-sub">💎 +5 olmos oling</p></div>
+        </div>
+        <button class="btn-bonus" id="btn-daily">Olish</button>
+      </div>
+      <div class="sec-row">
+        <h3 class="sec-title" id="sec-title">Mashhur taomlar</h3>
+        <span class="sec-count" id="sec-count"></span>
+      </div>
+      <div class="food-grid" id="food-grid"></div>
+      <div class="empty-foods hidden" id="empty-foods">
+        <div style="font-size:48px">🍽️</div>
+        <p>Hech narsa topilmadi</p>
+      </div>
+    </section>
 
-      <!-- Cart summary -->
-      <div class="cart-summary" id="cart-summary">
-        <div class="cart-summary-row">
-          <span data-uz="Jami narx:" data-ru="Итого:">Jami narx:</span>
-          <span class="summary-price" id="cart-total-price">0 so'm</span>
+    <!-- ══ ROULETTE ══ -->
+    <section class="page hidden" id="page-roulette">
+      <div class="rou-page">
+        <div class="rou-hero">
+          <h2 class="rou-title">🎰 Omadingni sinab ko'r!</h2>
+          <p class="rou-sub">Har kuni <strong>3 ta</strong> bepul aylantirish</p>
+          <div class="rou-spin-info">
+            <div class="spin-chip">
+              <span>🎰</span>
+              <span id="rou-spins-left">3</span>
+              <span>/ 3 spin</span>
+            </div>
+          </div>
         </div>
-        <div class="cart-summary-row">
-          <span data-uz="Keshbek:" data-ru="Кешбэк:">Keshbek:</span>
-          <span class="summary-cashback" id="cart-total-cashback">+ 0 so'm</span>
-        </div>
-        <div class="cart-summary-row">
-          <span data-uz="Olmoslar:" data-ru="Алмазы:">Olmoslar:</span>
-          <span class="summary-diamonds" id="cart-total-diamonds">+ 0 💎</span>
-        </div>
-        <div class="cart-divider"></div>
-
-        <!-- Promo code input -->
-        <div class="promo-row">
-          <input type="text" id="promo-input" class="promo-input" placeholder="Promo kod..." />
-          <button class="promo-apply-btn" onclick="applyPromo()">
-            <span data-uz="Qo'llash" data-ru="Применить">Qo'llash</span>
+        <div class="wheel-wrap">
+          <div class="wheel-outer-ring"></div>
+          <canvas id="wheel-canvas" width="300" height="300"></canvas>
+          <div class="wheel-ptr">▼</div>
+          <button class="wheel-center" id="btn-spin">
+            <span id="spin-txt">SPIN</span>
           </button>
         </div>
-
-        <!-- Checkout button -->
-        <button class="btn-primary btn-checkout" id="btn-checkout" onclick="handleCheckout()">
-          <span data-uz="Buyurtma berish 🚀" data-ru="Оформить заказ 🚀">Buyurtma berish 🚀</span>
-          <div class="btn-glow"></div>
-        </button>
+        <div class="rou-result hidden" id="rou-result">
+          <div class="result-card">
+            <p class="result-title" id="result-title">🎉 Tabriklaymiz!</p>
+            <img class="result-img" id="result-img" src="" alt=""/>
+            <p class="result-name" id="result-name"></p>
+            <p class="result-desc" id="result-desc"></p>
+            <div class="result-btns">
+              <button class="btn-primary" id="btn-result-cart">🛒 Savatga qo'shish</button>
+              <button class="btn-outline" id="btn-spin-again">Qayta aylantir</button>
+            </div>
+          </div>
+        </div>
+        <div class="rou-hist-section">
+          <h4 class="sec-title">So'nggi yutuqlar</h4>
+          <div id="rou-hist-list" class="rou-hist-list"></div>
+        </div>
       </div>
+    </section>
 
-    </div>
-    <!-- END CART SIDEBAR -->
+    <!-- ══ ORDERS ══ -->
+    <section class="page hidden" id="page-orders">
+      <div class="orders-page">
+        <div class="page-topbar">
+          <h2 class="page-h2">📦 Buyurtmalarim</h2>
+        </div>
+        <div id="orders-list" class="orders-list"></div>
+        <div class="empty-orders hidden" id="empty-orders">
+          <div style="font-size:52px;margin-bottom:12px">📦</div>
+          <p style="font-size:16px;font-weight:700;color:var(--text)">Buyurtmalar yo'q</p>
+          <p style="font-size:13px;color:var(--text3);margin-top:4px">Birinchi buyurtmangizni bering!</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- ══ REWARDS ══ -->
+    <section class="page hidden" id="page-rewards">
+      <div class="rewards-page">
+        <div class="level-hero" id="level-card">
+          <div class="lvl-icon" id="lvl-icon">🥉</div>
+          <div class="lvl-info">
+            <p class="lvl-name" id="lvl-name">Bronze</p>
+            <p class="lvl-next" id="lvl-next">Keyingi: Silver</p>
+          </div>
+          <div class="lvl-dia"><span>💎</span><span id="rew-dia">0</span></div>
+        </div>
+        <div class="xp-section">
+          <div class="xp-labels"><span id="xp-cur">0 XP</span><span id="xp-nxt">1000 XP</span></div>
+          <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+        </div>
+        <div class="levels-row">
+          <div class="lvl-card" id="lc-bronze"><span>🥉</span><span>Bronze</span></div>
+          <div class="lvl-card" id="lc-silver"><span>🥈</span><span>Silver</span></div>
+          <div class="lvl-card" id="lc-gold"><span>🥇</span><span>Gold</span></div>
+          <div class="lvl-card" id="lc-diamond"><span>💎</span><span>Diamond</span></div>
+        </div>
+        <div class="sec-row" style="margin-top:8px">
+          <h3 class="sec-title">🏆 Reyting</h3>
+          <div class="lb-tabs">
+            <button class="lb-tab active" data-period="weekly">Haftalik</button>
+            <button class="lb-tab" data-period="monthly">Oylik</button>
+          </div>
+        </div>
+        <div id="leaderboard" class="leaderboard"></div>
+      </div>
+    </section>
 
-    <!-- ══════════════════════════════════════════
-         BOTTOM NAVIGATION
-    ══════════════════════════════════════════ -->
-    <nav class="bottom-nav" id="bottom-nav">
-      <button class="nav-item active" id="nav-home" onclick="navigate('home')">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-label" data-uz="Bosh sahifa" data-ru="Главная">Bosh sahifa</span>
-        <div class="nav-active-dot"></div>
-      </button>
+    <!-- ══ PROFILE ══ -->
+    <section class="page hidden" id="page-profile">
+      <div class="profile-page">
+        <div class="p-hero">
+          <div class="p-avatar" id="p-avatar">A</div>
+          <h2 class="p-name" id="p-name">—</h2>
+          <p class="p-phone" id="p-phone">—</p>
+          <div class="p-level" id="p-level">🥉 Bronze</div>
+        </div>
+        <div class="p-stats">
+          <div class="p-stat"><span class="p-stat-val" id="ps-dia">0</span><span class="p-stat-lbl">💎 Olmoslar</span></div>
+          <div class="p-stat"><span class="p-stat-val" id="ps-cb">0</span><span class="p-stat-lbl">💰 Cashback (so'm)</span></div>
+          <div class="p-stat"><span class="p-stat-val" id="ps-ord">0</span><span class="p-stat-lbl">📦 Buyurtmalar</span></div>
+        </div>
+        <div class="p-menu">
+          <div class="p-group">
+            <p class="p-gtitle">⚙️ Sozlamalar</p>
+            <div class="p-row"><span>🌐 Til</span>
+              <div class="sw-group">
+                <button class="sw-btn active" data-lang="uz">🇺🇿 UZ</button>
+                <button class="sw-btn" data-lang="ru">🇷🇺 RU</button>
+              </div>
+            </div>
+            <div class="p-row"><span>🎨 Tema</span>
+              <div class="sw-group">
+                <button class="theme-btn active" data-t="light">☀️ Yorug'</button>
+                <button class="theme-btn" data-t="dark">🌙 Qorong'i</button>
+              </div>
+            </div>
+          </div>
+          <div class="p-group">
+            <p class="p-gtitle">📋 Boshqa</p>
+            <div class="p-row p-link" id="go-orders"><span>📦 Buyurtmalarim</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+            <a href="https://t.me/nimaYeymiz_sup" target="_blank" class="p-row p-link"><span>💬 Telegram Support</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+            <div class="p-row p-link" id="btn-admin-open"><span>⚙️ Admin Panel</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+          </div>
+          <div class="p-group">
+            <p class="p-gtitle">❓ FAQ</p>
+            <div id="faq-list"></div>
+          </div>
+          <button class="btn-logout" id="btn-logout">🚪 Chiqish</button>
+        </div>
+      </div>
+    </section>
 
-      <button class="nav-item" id="nav-menu" onclick="navigate('menu')">
-        <span class="nav-icon">🍽️</span>
-        <span class="nav-label" data-uz="Menyu" data-ru="Меню">Menyu</span>
-        <div class="nav-active-dot"></div>
-      </button>
+  </main>
 
-      <button class="nav-item nav-roulette" id="nav-roulette" onclick="navigate('roulette')">
-        <span class="nav-icon">🎰</span>
-        <span class="nav-label" data-uz="Spin" data-ru="Спин">Spin</span>
-        <div class="nav-active-dot"></div>
-      </button>
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="bnav active" data-page="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg><span>Bosh</span></button>
+    <button class="bnav" data-page="roulette"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span>Ruletka</span></button>
+    <button class="bnav cart-bnav" id="nav-cart-btn"><div class="cart-nav-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg><span class="cart-badge-nav hidden" id="cart-badge-nav">0</span></div><span>Savat</span></button>
+    <button class="bnav" data-page="rewards"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg><span>Mukofot</span></button>
+    <button class="bnav" data-page="profile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profil</span></button>
+  </nav>
 
-      <button class="nav-item" id="nav-rewards" onclick="navigate('rewards')">
-        <span class="nav-icon">🏆</span>
-        <span class="nav-label" data-uz="Mukofot" data-ru="Награды">Mukofot</span>
-        <div class="nav-active-dot"></div>
-      </button>
+</div>
 
-      <button class="nav-item" id="nav-profile" onclick="navigate('profile')">
-        <span class="nav-icon">👤</span>
-        <span class="nav-label" data-uz="Profil" data-ru="Профиль">Profil</span>
-        <div class="nav-active-dot"></div>
-      </button>
-    </nav>
-    <!-- END BOTTOM NAVIGATION -->
-
+<!-- ═══ CART DRAWER ═══ -->
+<div class="backdrop hidden" id="cart-backdrop"></div>
+<div class="drawer hidden" id="cart-drawer">
+  <div class="drawer-top">
+    <div class="drawer-handle"></div>
+    <div class="drawer-hrow"><h3>🛒 Savat</h3><button class="close-btn" id="cart-close">✕</button></div>
   </div>
-  <!-- END MAIN APP WRAPPER -->
+  <div class="cart-body" id="cart-body"></div>
 
-
-  <!-- ============================================================
-       GLOBAL MODALS & OVERLAYS
-       ============================================================ -->
-
-  <!-- Edit Profile Modal -->
-  <div class="modal-overlay hidden" id="edit-profile-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 data-uz="Profilni tahrirlash" data-ru="Редактировать профиль">Profilni tahrirlash</h3>
-        <button class="modal-close" onclick="closeEditProfile()">✕</button>
+  <!-- CASHBACK USE -->
+  <div class="cashback-use-section hidden" id="cashback-use-section">
+    <div class="cb-use-row">
+      <div class="cb-use-left">
+        <span class="cb-use-icon">💰</span>
+        <div>
+          <p class="cb-use-title">Cashback ishlatish</p>
+          <p class="cb-use-sub" id="cb-available-text">Mavjud: 0 so'm</p>
+        </div>
       </div>
-      <div class="modal-body">
-        <label class="form-label" data-uz="To'liq ism" data-ru="Полное имя">To'liq ism</label>
-        <input type="text" id="edit-name" class="form-input" />
-
-        <label class="form-label" style="margin-top:14px" data-uz="Telefon" data-ru="Телефон">Telefon</label>
-        <input type="tel" id="edit-phone" class="form-input" />
-      </div>
-      <div class="modal-footer">
-        <button class="btn-primary" onclick="saveEditProfile()">
-          <span data-uz="Saqlash ✓" data-ru="Сохранить ✓">Saqlash ✓</span>
-        </button>
-      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="use-cashback-toggle"/>
+        <span class="toggle-slider"></span>
+      </label>
     </div>
-  </div>
-
-  <!-- Checkout Success Modal -->
-  <div class="modal-overlay hidden" id="checkout-modal">
-    <div class="modal-card modal-success">
-      <div class="success-animation">
-        <div class="success-ring"></div>
-        <span class="success-icon">✓</span>
-      </div>
-      <h3 class="success-title" data-uz="Buyurtma qabul qilindi!" data-ru="Заказ принят!">Buyurtma qabul qilindi!</h3>
-      <p class="success-order-id" id="success-order-id">#001</p>
-      <div class="success-rewards">
-        <span id="success-diamonds">+0 💎</span>
-        <span id="success-cashback">+0 so'm keshbek</span>
-      </div>
-      <p class="success-eta" data-uz="Taxminiy tayyor bo'lish vaqti: 15-20 daqiqa" data-ru="Примерное время готовности: 15-20 минут">Taxminiy tayyor bo'lish vaqti: 15-20 daqiqa</p>
-      <button class="btn-primary" onclick="closeCheckoutModal()">
-        <span data-uz="Davom etish" data-ru="Продолжить">Davom etish</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Reward Claim Modal -->
-  <div class="modal-overlay hidden" id="reward-claim-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="reward-claim-title">Mukofot</h3>
-        <button class="modal-close" onclick="closeRewardModal()">✕</button>
-      </div>
-      <div class="modal-body reward-modal-body">
-        <div class="reward-claim-icon" id="reward-claim-icon">🎁</div>
-        <p class="reward-claim-desc" id="reward-claim-desc">Tavsif</p>
-        <p class="reward-claim-cost">
-          <span data-uz="Narxi:" data-ru="Стоимость:">Narxi:</span>
-          <span id="reward-claim-cost-val">0 💎</span>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-secondary" onclick="closeRewardModal()">
-          <span data-uz="Bekor qilish" data-ru="Отмена">Bekor qilish</span>
-        </button>
-        <button class="btn-primary" onclick="confirmClaimReward()">
-          <span data-uz="Olish" data-ru="Получить">Olish</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Confirm Logout Modal -->
-  <div class="modal-overlay hidden" id="logout-modal">
-    <div class="modal-card">
-      <div class="modal-body" style="text-align:center;padding:28px 20px 8px">
-        <span style="font-size:48px">🚪</span>
-        <h3 style="margin-top:12px" data-uz="Chiqishni xohlaysizmi?" data-ru="Вы хотите выйти?">Chiqishni xohlaysizmi?</h3>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-secondary" onclick="document.getElementById('logout-modal').classList.add('hidden')">
-          <span data-uz="Yo'q" data-ru="Нет">Yo'q</span>
-        </button>
-        <button class="btn-logout-confirm" onclick="doLogout()">
-          <span data-uz="Ha, chiqish" data-ru="Да, выйти">Ha, chiqish</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Admin food edit modal -->
-  <div class="modal-overlay hidden" id="admin-edit-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 data-uz="Ovqatni tahrirlash" data-ru="Редактировать блюдо">Ovqatni tahrirlash</h3>
-        <button class="modal-close" onclick="closeAdminEdit()">✕</button>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" id="edit-food-id" />
-        <label class="form-label">Nomi (UZ)</label>
-        <input type="text" id="edit-food-name-uz" class="admin-input" />
-
-        <label class="form-label" style="margin-top:10px">Narxi</label>
-        <input type="number" id="edit-food-price" class="admin-input" />
-
-        <label class="form-label" style="margin-top:10px">Keshbek %</label>
-        <input type="number" id="edit-food-cashback" class="admin-input" />
-
-        <label class="form-label" style="margin-top:10px">Olmoslar 💎</label>
-        <input type="number" id="edit-food-diamonds" class="admin-input" />
-      </div>
-      <div class="modal-footer">
-        <button class="btn-primary" onclick="saveAdminEdit()">
-          <span data-uz="Saqlash" data-ru="Сохранить">Saqlash</span>
-        </button>
-      </div>
+    <div class="cb-discount-row hidden" id="cb-discount-row">
+      <span>💰 Chegirma:</span>
+      <span id="cb-discount-amount" class="green-text">-0 so'm</span>
     </div>
   </div>
 
-  <!-- Toast notification -->
-  <div class="toast hidden" id="toast">
-    <span class="toast-icon" id="toast-icon">✓</span>
-    <span class="toast-msg" id="toast-msg">Xabar</span>
+  <div class="cart-footer hidden" id="cart-footer">
+    <div class="cart-summary">
+      <div class="cs-row"><span>Mahsulotlar:</span><span id="ct-subtotal">0 so'm</span></div>
+      <div class="cs-row cb-saving hidden" id="cs-saving"><span>💰 Cashback chegirma:</span><span id="ct-saving" class="green-text">-0 so'm</span></div>
+      <div class="cs-row total-row"><span>Jami:</span><strong id="ct-total">0 so'm</strong></div>
+      <div class="cs-row green-text"><span>💎 Olmoslar:</span><span id="ct-diamonds">+0</span></div>
+      <div class="cs-row green-text"><span>💰 Yangi cashback:</span><span id="ct-cashback">+0 so'm</span></div>
+    </div>
+    <button class="btn-primary" id="btn-pay">To'lov usulini tanlash 💳</button>
   </div>
+</div>
 
-  <!-- Main JavaScript -->
-  <script src="app.js"></script>
+<!-- ═══ PAYMENT MODAL ═══ -->
+<div class="backdrop hidden" id="pay-backdrop"></div>
+<div class="drawer hidden" id="pay-drawer">
+  <div class="drawer-top">
+    <div class="drawer-handle"></div>
+    <div class="drawer-hrow"><h3>💳 To'lov usuli</h3><button class="close-btn" id="pay-close">✕</button></div>
+  </div>
+  <div class="pay-body">
+    <p class="pay-amount-label">To'lov miqdori</p>
+    <p class="pay-amount" id="pay-amount">0 so'm</p>
+    <div class="pay-methods">
+      <button class="pay-method active" data-method="payme" id="pm-payme">
+        <div class="pm-logo payme-logo">Payme</div>
+        <div class="pm-info"><p class="pm-name">Payme</p><p class="pm-desc">Karta orqali to'lov</p></div>
+        <div class="pm-check" id="check-payme">✓</div>
+      </button>
+      <button class="pay-method" data-method="click" id="pm-click">
+        <div class="pm-logo click-logo">Click</div>
+        <div class="pm-info"><p class="pm-name">Click</p><p class="pm-desc">Click ilovasi orqali</p></div>
+        <div class="pm-check hidden" id="check-click">✓</div>
+      </button>
+      <button class="pay-method" data-method="cash" id="pm-cash">
+        <div class="pm-logo cash-logo">💵</div>
+        <div class="pm-info"><p class="pm-name">Naqd pul</p><p class="pm-desc">Olishda to'lash</p></div>
+        <div class="pm-check hidden" id="check-cash">✓</div>
+      </button>
+    </div>
+    <div class="pay-note">
+      <p id="pay-note-text">Payme orqali to'lov qilgach, buyurtmangiz avtomatik tasdiqlanadi.</p>
+    </div>
+    <button class="btn-primary" id="btn-confirm-pay">✅ Buyurtmani tasdiqlash</button>
+  </div>
+</div>
 
+<!-- ═══ FOOD MODAL ═══ -->
+<div class="backdrop hidden" id="food-backdrop"></div>
+<div class="drawer hidden" id="food-modal">
+  <div class="fm-img-wrap">
+    <img id="fm-img" src="" alt=""/>
+    <button class="fm-close" id="fm-close">✕</button>
+    <div class="fm-gradient"></div>
+  </div>
+  <div class="fm-body">
+    <div class="fm-top">
+      <h3 id="fm-name"></h3>
+      <div class="fm-chips">
+        <span class="chip green-chip" id="fm-cb">💰 3%</span>
+        <span class="chip blue-chip" id="fm-dia">💎 +0</span>
+      </div>
+    </div>
+    <p class="fm-desc" id="fm-desc"></p>
+    <div class="fm-price-row">
+      <span class="fm-price" id="fm-price"></span>
+      <div class="fm-qty-ctrl">
+        <button class="qty-btn" id="fm-minus">−</button>
+        <span id="fm-qty">1</span>
+        <button class="qty-btn plus-btn" id="fm-plus">+</button>
+      </div>
+    </div>
+    <button class="btn-primary" id="btn-fm-add">Savatga qo'shish</button>
+  </div>
+</div>
+
+<!-- ═══ ORDER DETAIL MODAL ═══ -->
+<div class="backdrop hidden" id="order-backdrop"></div>
+<div class="drawer hidden" id="order-modal">
+  <div class="drawer-top">
+    <div class="drawer-handle"></div>
+    <div class="drawer-hrow"><h3>📦 Buyurtma tafsiloti</h3><button class="close-btn" id="order-modal-close">✕</button></div>
+  </div>
+  <div class="order-modal-body" id="order-modal-body"></div>
+</div>
+
+<!-- ═══ ADMIN PANEL ═══ -->
+<div class="backdrop hidden" id="admin-backdrop"></div>
+<div class="drawer hidden" id="admin-panel">
+  <div class="drawer-top">
+    <div class="drawer-handle"></div>
+    <div class="drawer-hrow"><h3>⚙️ Admin Panel</h3><button class="close-btn" id="admin-close">✕</button></div>
+  </div>
+  <div class="admin-stats">
+    <div class="adm-stat"><span id="adm-foods">0</span><span>Taomlar</span></div>
+    <div class="adm-stat"><span id="adm-orders">0</span><span>Buyurtmalar</span></div>
+    <div class="adm-stat"><span id="adm-revenue">0</span><span>Daromad</span></div>
+  </div>
+  <div class="adm-tabs">
+    <button class="adm-tab active" data-atab="foods">Taomlar</button>
+    <button class="adm-tab" data-atab="roulette">Ruletka</button>
+  </div>
+  <div class="admin-body" id="admin-body">
+    <div id="adm-foods-panel">
+      <button class="btn-primary btn-sm" id="btn-food-add">+ Taom qo'shish</button>
+      <div id="adm-food-list" style="margin-top:12px"></div>
+    </div>
+    <div id="adm-roulette-panel" class="hidden">
+      <p style="font-size:13px;color:var(--text3);padding:8px 0">Ruletka taomlari menyudan avtomatik olinadi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOD FORM ═══ -->
+<div class="backdrop hidden" id="fform-backdrop"></div>
+<div class="drawer hidden" id="food-form">
+  <div class="drawer-top">
+    <div class="drawer-handle"></div>
+    <div class="drawer-hrow"><h3 id="fform-title">Taom qo'shish</h3><button class="close-btn" id="fform-close">✕</button></div>
+  </div>
+  <div class="form-body">
+    <div class="field-wrap"><input type="text" id="ff-name" class="field-input" placeholder=" "/><label class="field-label">Nomi</label></div>
+    <div class="field-wrap"><input type="text" id="ff-desc" class="field-input" placeholder=" "/><label class="field-label">Tavsif</label></div>
+    <div class="field-wrap"><input type="url" id="ff-img" class="field-input" placeholder=" "/><label class="field-label">Rasm URL</label></div>
+    <div class="form-row">
+      <div class="field-wrap half"><input type="number" id="ff-price" class="field-input" placeholder=" "/><label class="field-label">Narx (so'm)</label></div>
+      <div class="field-wrap half">
+        <select id="ff-cat" class="field-input field-select">
+          <option value="milliy">🥘 Milliy taomlar</option>
+          <option value="burger">🍔 Burger</option>
+          <option value="lavash">🌯 Lavash</option>
+          <option value="pizza">🍕 Pizza</option>
+          <option value="ichimlik">🍵 Ichimlik</option>
+          <option value="salat">🥗 Salat</option>
+          <option value="shirinlik">🍰 Shirinlik</option>
+          <option value="non">🫓 Non & Patir</option>
+        </select>
+        <label class="field-label always-up">Kategoriya</label>
+      </div>
+    </div>
+    <button class="btn-primary" id="btn-fform-save">Saqlash</button>
+  </div>
+</div>
+
+<!-- TOAST + CONFETTI -->
+<div class="toast-wrap" id="toast-wrap"></div>
+<canvas class="confetti-cv hidden" id="confetti-cv"></canvas>
+
+<script src="app.js"></script>
 </body>
 </html>
