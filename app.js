@@ -22,15 +22,19 @@ const players = [
     { id: 5, name: "Kevin De Bruyne", country: "Belgium", position: "Midfielder", club: "Man City", age: 32, goals: 102, assists: 168, photo: "🎯", number: 17 },
     { id: 6, name: "Vinícius Jr", country: "Brazil", position: "Forward", club: "Real Madrid", age: 23, goals: 87, assists: 68, photo: "⚡", number: 7 },
     { id: 7, name: "Jude Bellingham", country: "England", position: "Midfielder", club: "Real Madrid", age: 20, goals: 45, assists: 32, photo: "⭐", number: 5 },
-    { id: 8, name: "Jamal Musiala", country: "Germany", position: "Midfielder", club: "Bayern", age: 20, goals: 38, assists: 28, photo: "✨", number: 42 }
+    { id: 8, name: "Jamal Musiala", country: "Germany", position: "Midfielder", club: "Bayern", age: 20, goals: 38, assists: 28, photo: "✨", number: 42 },
+    { id: 9, name: "Pedri", country: "Spain", position: "Midfielder", club: "Barcelona", age: 21, goals: 20, assists: 15, photo: "💫", number: 8 },
+    { id: 10, name: "Jaloliddin Masharipov", country: "Uzbekistan", position: "Midfielder", club: "Esteghlal", age: 30, goals: 25, assists: 18, photo: "⭐", number: 10 }
 ];
 
 // ============ THREE.JS EARTH SETUP ============
-let scene, camera, renderer, earth, controls;
-let particles = [];
+let scene, camera, renderer, earth, clouds, atmosphere, stars, controls;
+let particleSystem;
 
 function initEarth() {
     const container = document.getElementById('earth-canvas');
+    if (!container) return;
+    
     const width = container.clientWidth;
     const height = container.clientHeight;
     
@@ -46,46 +50,101 @@ function initEarth() {
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
     
-    // Earth Texture
-    const textureLoader = new THREE.TextureLoader();
-    const earthMap = textureLoader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg');
-    const earthSpecularMap = textureLoader.load('https://threejs.org/examples/textures/planets/earth_specular_2048.jpg');
-    const earthNormalMap = textureLoader.load('https://threejs.org/examples/textures/planets/earth_normal_2048.jpg');
-    const cloudMap = textureLoader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png');
+    // Create procedural earth texture (since external images might not load)
+    const canvas = document.createElement('canvas');
+    canvas.width = 2048;
+    canvas.height = 1024;
+    const ctx = canvas.getContext('2d');
     
-    // Earth Sphere
+    // Draw ocean
+    ctx.fillStyle = '#1a4d8c';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw continents (simplified)
+    ctx.fillStyle = '#4a8c3f';
+    // South America
+    ctx.beginPath();
+    ctx.ellipse(650, 550, 120, 180, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // North America
+    ctx.beginPath();
+    ctx.ellipse(450, 350, 140, 160, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Europe/Asia
+    ctx.beginPath();
+    ctx.ellipse(1400, 400, 200, 180, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Africa
+    ctx.beginPath();
+    ctx.ellipse(1200, 600, 130, 150, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Australia
+    ctx.beginPath();
+    ctx.ellipse(1700, 700, 80, 70, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    const earthMap = new THREE.CanvasTexture(canvas);
+    
     const earthGeometry = new THREE.SphereGeometry(1, 128, 128);
     const earthMaterial = new THREE.MeshPhongMaterial({
         map: earthMap,
-        specularMap: earthSpecularMap,
-        specular: new THREE.Color('grey'),
-        shininess: 5,
-        normalMap: earthNormalMap,
-        normalScale: new THREE.Vector2(0.8, 0.8)
+        shininess: 25,
+        emissive: new THREE.Color(0x0a0a2a),
+        emissiveIntensity: 0.2
     });
     earth = new THREE.Mesh(earthGeometry, earthMaterial);
     scene.add(earth);
     
+    // Add glowing dots for countries (World Cup participants)
+    const countryPositions = [
+        { lat: -15, lon: -55, color: 0xffd700, name: "Brazil" },      // Brazil
+        { lat: -35, lon: -65, color: 0x75aadb, name: "Argentina" },    // Argentina
+        { lat: 46, lon: 2, color: 0x0055a4, name: "France" },          // France
+        { lat: 52, lon: -1, color: 0x1b458f, name: "England" },        // England
+        { lat: 40, lon: -4, color: 0xc60b1e, name: "Spain" },          // Spain
+        { lat: 51, lon: 10, color: 0x000000, name: "Germany" },        // Germany
+        { lat: 36, lon: 138, color: 0xbc002d, name: "Japan" },         // Japan
+        { lat: 41, lon: 64, color: 0x1eb53a, name: "Uzbekistan" }      // Uzbekistan
+    ];
+    
+    const glowGeometry = new THREE.SphereGeometry(1.02, 32, 32);
+    countryPositions.forEach(pos => {
+        const phi = (90 - pos.lat) * Math.PI / 180;
+        const theta = pos.lon * Math.PI / 180;
+        const x = 1.05 * Math.sin(phi) * Math.cos(theta);
+        const y = 1.05 * Math.cos(phi);
+        const z = 1.05 * Math.sin(phi) * Math.sin(theta);
+        
+        const pointLight = new THREE.PointLight(pos.color, 0.5, 3);
+        pointLight.position.set(x, y, z);
+        scene.add(pointLight);
+        
+        const glowMaterial = new THREE.MeshBasicMaterial({ color: pos.color, transparent: true, opacity: 0.6 });
+        const glowDot = new THREE.Mesh(new THREE.SphereGeometry(0.02, 16, 16), glowMaterial);
+        glowDot.position.set(x, y, z);
+        scene.add(glowDot);
+    });
+    
     // Clouds
     const cloudGeometry = new THREE.SphereGeometry(1.01, 128, 128);
     const cloudMaterial = new THREE.MeshPhongMaterial({
-        map: cloudMap,
+        color: 0xffffff,
         transparent: true,
         opacity: 0.15,
         blending: THREE.AdditiveBlending
     });
-    const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+    clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
     scene.add(clouds);
     
     // Atmosphere Glow
-    const glowGeometry = new THREE.SphereGeometry(1.05, 64, 64);
-    const glowMaterial = new THREE.MeshPhongMaterial({
+    const glowGeometryAtmo = new THREE.SphereGeometry(1.05, 64, 64);
+    const glowMaterialAtmo = new THREE.MeshPhongMaterial({
         color: 0x00f3ff,
         transparent: true,
         opacity: 0.08,
         side: THREE.BackSide
     });
-    const atmosphere = new THREE.Mesh(glowGeometry, glowMaterial);
+    atmosphere = new THREE.Mesh(glowGeometryAtmo, glowMaterialAtmo);
     scene.add(atmosphere);
     
     // Lights
@@ -115,7 +174,7 @@ function initEarth() {
     }
     starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.2, transparent: true, opacity: 0.6 });
-    const stars = new THREE.Points(starGeometry, starMaterial);
+    stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
     
     // Controls
@@ -133,16 +192,17 @@ function initEarth() {
     // Animation
     function animate() {
         requestAnimationFrame(animate);
-        controls.update(); // autoRotate handled by OrbitControls
-        clouds.rotation.y += 0.0005;
-        atmosphere.rotation.y += 0.0003;
-        stars.rotation.y += 0.0002;
+        controls.update();
+        if (clouds) clouds.rotation.y += 0.0005;
+        if (atmosphere) atmosphere.rotation.y += 0.0003;
+        if (stars) stars.rotation.y += 0.0002;
         renderer.render(scene, camera);
     }
     animate();
     
     // Handle resize
     window.addEventListener('resize', () => {
+        if (!container) return;
         const newWidth = container.clientWidth;
         const newHeight = container.clientHeight;
         camera.aspect = newWidth / newHeight;
@@ -152,9 +212,10 @@ function initEarth() {
 }
 
 // ============ PARTICLE SYSTEM ============
-class ParticleSystem {
+class ParticleSystemClass {
     constructor() {
         this.canvas = document.getElementById('particle-canvas');
+        if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
         this.init();
@@ -167,25 +228,27 @@ class ParticleSystem {
     }
     
     resize() {
+        if (!this.canvas) return;
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
     }
     
     addExplosion(x, y, color) {
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 40; i++) {
             this.particles.push({
                 x: x,
                 y: y,
-                vx: (Math.random() - 0.5) * 8,
-                vy: (Math.random() - 0.5) * 8,
+                vx: (Math.random() - 0.5) * 10,
+                vy: (Math.random() - 0.5) * 10,
                 life: 1,
                 color: color || '#00f3ff',
-                size: Math.random() * 4 + 2
+                size: Math.random() * 5 + 2
             });
         }
     }
     
     animate() {
+        if (!this.ctx || !this.canvas) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         for (let i = this.particles.length - 1; i >= 0; i--) {
@@ -203,9 +266,11 @@ class ParticleSystem {
             
             this.ctx.globalAlpha = p.life * 0.8;
             this.ctx.fillStyle = p.color;
-            this.ctx.shadowBlur = 10;
+            this.ctx.shadowBlur = 15;
             this.ctx.shadowColor = p.color;
-            this.ctx.fillRect(p.x - p.size/2, p.y - p.size/2, p.size, p.size);
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            this.ctx.fill();
         }
         
         requestAnimationFrame(() => this.animate());
@@ -221,17 +286,56 @@ function renderCountries() {
         <div class="country-card" data-country="${country.name}">
             <div class="country-flag">${country.flag}</div>
             <div class="country-name">${country.name}</div>
-            <div class="country-stats">⚽ ${country.players} Players</div>
+            <div class="country-stats">⚽ ${country.players} Players • 🔥 Elite Squad</div>
         </div>
     `).join('');
     
     document.querySelectorAll('.country-card').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
             const countryName = card.dataset.country;
-            alert(`✨ Welcome to ${countryName} Football Universe! ✨\nExperience the unique atmosphere and legendary players.`);
-            particleSystem.addExplosion(window.innerWidth/2, window.innerHeight/2, '#00f3ff');
+            const country = countries.find(c => c.name === countryName);
+            if (country) {
+                showCountryModal(country);
+            }
+            if (particleSystem) {
+                particleSystem.addExplosion(e.clientX, e.clientY, '#00f3ff');
+            }
         });
     });
+}
+
+function showCountryModal(country) {
+    const modal = document.getElementById('player-modal');
+    const detailDiv = document.getElementById('player-detail');
+    
+    const countryPlayers = players.filter(p => p.country === country.name);
+    
+    detailDiv.innerHTML = `
+        <div style="text-align: center">
+            <div style="font-size: 80px; margin-bottom: 20px">${country.flag}</div>
+            <h2 style="font-size: 48px; margin-bottom: 10px">${country.name}</h2>
+            <div style="color: #00f3ff; margin-bottom: 30px">⚡ WORLD CUP PARTICIPANT ⚡</div>
+        </div>
+        <div style="margin: 30px 0">
+            <h3 style="margin-bottom: 20px; font-size: 24px">🌟 STAR PLAYERS</h3>
+            <div style="display: grid; gap: 15px">
+                ${countryPlayers.map(p => `
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center">
+                        <div>
+                            <div style="font-size: 18px; font-weight: bold">${p.name}</div>
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.6)">${p.position} • ${p.club}</div>
+                        </div>
+                        <div style="font-size: 30px">${p.photo}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    if (particleSystem) {
+        particleSystem.addExplosion(window.innerWidth/2, window.innerHeight/2, '#ff00e6');
+    }
 }
 
 function renderPlayers(searchTerm = '', positionFilter = 'all') {
@@ -243,12 +347,18 @@ function renderPlayers(searchTerm = '', positionFilter = 'all') {
         (positionFilter === 'all' || p.position === positionFilter)
     );
     
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 60px">No players found 🔍</div>';
+        return;
+    }
+    
     grid.innerHTML = filtered.map(player => `
         <div class="player-card" data-player-id="${player.id}">
             <div class="player-photo">${player.photo}</div>
             <div class="player-name">${player.name}</div>
             <div class="player-info">${player.country} • ${player.position}</div>
             <div class="player-info">${player.club} • #${player.number}</div>
+            <div class="player-info">⚽ ${player.goals} goals • 🎯 ${player.assists} assists</div>
         </div>
     `).join('');
     
@@ -268,25 +378,47 @@ function showPlayerModal(playerId) {
     const detailDiv = document.getElementById('player-detail');
     
     detailDiv.innerHTML = `
-        <div class="player-detail-name">${player.name}</div>
-        <div class="player-detail-stats">
-            <div class="detail-stat"><div class="detail-stat-label">COUNTRY</div><div class="detail-stat-value">${player.country}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">POSITION</div><div class="detail-stat-value">${player.position}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">CLUB</div><div class="detail-stat-value">${player.club}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">AGE</div><div class="detail-stat-value">${player.age}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">GOALS</div><div class="detail-stat-value">${player.goals}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">ASSISTS</div><div class="detail-stat-value">${player.assists}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">SHIRT NUMBER</div><div class="detail-stat-value">#${player.number}</div></div>
-            <div class="detail-stat"><div class="detail-stat-label">MARKET VALUE</div><div class="detail-stat-value">€${Math.floor(Math.random() * 100 + 20)}M</div></div>
+        <div style="text-align: center">
+            <div style="font-size: 80px; margin-bottom: 10px">${player.photo}</div>
+            <div class="player-detail-name" style="font-size: 48px; font-weight: 800">${player.name}</div>
+            <div style="color: #00f3ff; margin-bottom: 20px">${player.country} • #${player.number}</div>
         </div>
-        <div style="margin-top: 20px; padding: 20px; background: rgba(0,243,255,0.1); border-radius: 15px;">
-            <h3 style="margin-bottom: 10px;">🏆 CAREER HIGHLIGHTS</h3>
-            <p>One of the most exceptional talents in world football. Known for incredible ${player.position === 'Forward' ? 'goal-scoring ability' : 'playmaking vision'}. A true icon of the modern game.</p>
+        <div class="player-detail-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 30px 0">
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">POSITION</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">${player.position}</div>
+            </div>
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">CLUB</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">${player.club}</div>
+            </div>
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">AGE</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">${player.age}</div>
+            </div>
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">GOALS</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">${player.goals}</div>
+            </div>
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">ASSISTS</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">${player.assists}</div>
+            </div>
+            <div class="detail-stat" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px">
+                <div class="detail-stat-label" style="font-size: 11px; color: rgba(255,255,255,0.5)">MARKET VALUE</div>
+                <div class="detail-stat-value" style="font-size: 24px; font-weight: 700">€${Math.floor(Math.random() * 100 + 20)}M</div>
+            </div>
+        </div>
+        <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, rgba(0,243,255,0.1), rgba(255,0,230,0.1)); border-radius: 15px">
+            <h3 style="margin-bottom: 10px">🏆 CAREER HIGHLIGHTS</h3>
+            <p>${player.name} is one of the most exceptional talents in world football. Known for incredible ${player.position === 'Forward' ? 'goal-scoring ability and clinical finishing' : 'playmaking vision and creative passing'}. A true icon of the modern game with ${player.goals} career goals and counting.</p>
         </div>
     `;
     
     modal.classList.add('active');
-    particleSystem.addExplosion(window.innerWidth/2, window.innerHeight/2, '#ff00e6');
+    if (particleSystem) {
+        particleSystem.addExplosion(window.innerWidth/2, window.innerHeight/2, '#ff00e6');
+    }
 }
 
 // ============ PAGE NAVIGATION ============
@@ -303,7 +435,8 @@ function initNavigation() {
             link.classList.add('active');
             
             pages.forEach(page => page.classList.remove('active'));
-            document.getElementById(`${pageId}-page`).classList.add('active');
+            const targetPage = document.getElementById(`${pageId}-page`);
+            if (targetPage) targetPage.classList.add('active');
             
             if (pageId === 'players') {
                 renderPlayers();
@@ -316,7 +449,7 @@ function initNavigation() {
     const translations = {
         en: { explore: 'EXPLORE', players: 'PLAYERS', teams: 'TEAMS', stats: 'STATISTICS' },
         ru: { explore: 'ИССЛЕДОВАТЬ', players: 'ИГРОКИ', teams: 'КОМАНДЫ', stats: 'СТАТИСТИКА' },
-        uz: { explore: 'KASHF ET', players: 'O\'YINCHILAR', teams: 'JAMOALAR', stats: 'STATISTIKA' }
+        uz: { explore: 'KASHF ET', players: "O'YINCHILAR", teams: 'JAMOALAR', stats: 'STATISTIKA' }
     };
     
     langBtns.forEach(btn => {
@@ -326,10 +459,13 @@ function initNavigation() {
             btn.classList.add('active');
             
             const t = translations[lang];
-            document.querySelectorAll('.nav-link').forEach((link, idx) => {
-                const keys = ['explore', 'players', 'teams', 'stats'];
-                link.textContent = t[keys[idx]];
-            });
+            if (t) {
+                const links = document.querySelectorAll('.nav-link');
+                if (links[0]) links[0].textContent = t.explore;
+                if (links[1]) links[1].textContent = t.players;
+                if (links[2]) links[2].textContent = t.teams;
+                if (links[3]) links[3].textContent = t.stats;
+            }
         });
     });
 }
@@ -352,32 +488,51 @@ function initSearch() {
     }
 }
 
+// ============ STATS ANIMATION ============
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+        const finalValue = parseInt(stat.innerText);
+        if (isNaN(finalValue)) return;
+        let current = 0;
+        const interval = setInterval(() => {
+            current += Math.ceil(finalValue / 50);
+            if (current >= finalValue) {
+                current = finalValue;
+                clearInterval(interval);
+            }
+            stat.innerText = current;
+        }, 30);
+    });
+}
+
 // ============ LOADER ============
 function hideLoader() {
     const loader = document.getElementById('loader');
-    setTimeout(() => {
-        loader.style.opacity = '0';
+    if (loader) {
         setTimeout(() => {
-            loader.style.display = 'none';
-        }, 1000);
-    }, 1500);
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 1000);
+        }, 1500);
+    }
 }
 
 // ============ INITIALIZE ============
-let particleSystem;
-
 document.addEventListener('DOMContentLoaded', () => {
     initEarth();
-    particleSystem = new ParticleSystem();
+    particleSystem = new ParticleSystemClass();
     renderCountries();
     initNavigation();
     initSearch();
+    animateStats();
     hideLoader();
     
     // Explore Earth button
     const exploreBtn = document.getElementById('explore-earth-btn');
     if (exploreBtn) {
-        exploreBtn.addEventListener('click', () => {
+        exploreBtn.addEventListener('click', (e) => {
             if (controls) {
                 controls.autoRotate = false;
                 camera.position.set(0, 0, 2);
@@ -385,7 +540,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     controls.autoRotate = true;
                 }, 3000);
             }
-            particleSystem.addExplosion(window.innerWidth/2, window.innerHeight/2, '#00f3ff');
+            if (particleSystem) {
+                particleSystem.addExplosion(e.clientX, e.clientY, '#00f3ff');
+            }
         });
     }
     
@@ -398,27 +555,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
-    
-    // Animate stats
-    const statNumbers = document.querySelectorAll('.stat-number');
-    statNumbers.forEach(stat => {
-        const finalValue = parseInt(stat.innerText);
-        let current = 0;
-        const interval = setInterval(() => {
-            current += Math.ceil(finalValue / 50);
-            if (current >= finalValue) {
-                current = finalValue;
-                clearInterval(interval);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
             }
-            stat.innerText = current;
-        }, 30);
-    });
+        });
+    }
 });
 
-// Export for console debugging
-window.playerVerse = { countries, players };
+console.log('🔥 PlayerVerse Initialized! Welcome to the Ultimate Football Universe!');
