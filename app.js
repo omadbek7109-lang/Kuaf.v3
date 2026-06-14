@@ -1,632 +1,1087 @@
-// PlayerVerse - Complete Production App.js
-// Premium Football Platform
+// PLAYERVERSE VERSION 1.0
+// PART 2 OF 3
+// countries.js
 
-// ============================================
-// COUNTRIES DATABASE
-// ============================================
-const countries = [
-    {
-        id: 1,
-        name: "France",
-        flag: "🇫🇷",
-        formation: "4-3-3",
-        colors: ["#0055A4", "#FFFFFF", "#EF4135"],
-        players: [
-            { id: 1, name: "Kylian Mbappé", club: "Real Madrid", position: "Forward", age: 25, height: "1.78m", goals: 46, caps: 75, bio: "One of the world's most exciting forwards, known for exceptional pace and finishing.", image: null },
-            { id: 2, name: "Antoine Griezmann", club: "Atletico Madrid", position: "Forward", age: 33, height: "1.76m", goals: 44, caps: 127, bio: "Versatile attacker and World Cup winner with exceptional football IQ.", image: null },
-            { id: 3, name: "Kylian Mbappé", club: "Real Madrid", position: "Forward", age: 25, height: "1.78m", goals: 46, caps: 75, bio: "One of the world's most exciting forwards, known for exceptional pace and finishing.", image: null },
-            { id: 4, name: "Olivier Giroud", club: "AC Milan", position: "Forward", age: 37, height: "1.93m", goals: 56, caps: 131, bio: "Target man and France's all-time leading goalscorer.", image: null },
-            { id: 5, name: "Aurélien Tchouaméni", club: "Real Madrid", position: "Midfielder", age: 24, height: "1.87m", goals: 3, caps: 31, bio: "Powerful defensive midfielder with excellent ball-winning ability.", image: null },
-            { id: 6, name: "Eduardo Camavinga", club: "Real Madrid", position: "Midfielder", age: 21, height: "1.82m", goals: 1, caps: 17, bio: "Dynamic young midfielder with exceptional versatility.", image: null },
-            { id: 7, name: "Adrien Rabiot", club: "Marseille", position: "Midfielder", age: 29, height: "1.88m", goals: 4, caps: 43, bio: "Box-to-box midfielder known for physical presence and technical ability.", image: null },
-            { id: 8, name: "Jules Koundé", club: "Barcelona", position: "Defender", age: 25, height: "1.78m", goals: 0, caps: 25, bio: "Modern center-back comfortable on the ball and strong in defense.", image: null },
-            { id: 9, name: "Dayot Upamecano", club: "Bayern Munich", position: "Defender", age: 25, height: "1.86m", goals: 2, caps: 18, bio: "Powerful center-back known for aggressive defending and pace.", image: null },
-            { id: 10, name: "Ibrahima Konaté", club: "Liverpool", position: "Defender", age: 25, height: "1.94m", goals: 0, caps: 14, bio: "Physical center-back with excellent aerial ability.", image: null },
-            { id: 11, name: "Theo Hernandez", club: "AC Milan", position: "Defender", age: 26, height: "1.84m", goals: 2, caps: 24, bio: "Attacking left-back with exceptional pace and crossing.", image: null },
-            { id: 12, name: "Benjamin Pavard", club: "Inter Milan", position: "Defender", age: 28, height: "1.86m", goals: 2, caps: 53, bio: "Versatile defender known for defensive solidity.", image: null },
-            { id: 13, name: "Mike Maignan", club: "AC Milan", position: "Goalkeeper", age: 28, height: "1.91m", goals: 0, caps: 14, bio: "World-class goalkeeper with exceptional reflexes.", image: null },
-            { id: 14, name: "Brice Samba", club: "Lens", position: "Goalkeeper", age: 30, height: "1.87m", goals: 0, caps: 3, bio: "Reliable goalkeeper known for shot-stopping.", image: null },
-            { id: 15, name: "Randal Kolo Muani", club: "PSG", position: "Forward", age: 25, height: "1.87m", goals: 7, caps: 18, bio: "Versatile forward with pace and finishing ability.", image: null }
-        ]
-    },
-    {
-        id: 2,
-        name: "Argentina",
-        flag: "🇦🇷",
-        formation: "4-4-2",
-        colors: ["#75AADB", "#FFFFFF", "#000000"],
-        players: [
-            { id: 16, name: "Lionel Messi", club: "Inter Miami", position: "Forward", age: 36, height: "1.70m", goals: 106, caps: 180, bio: "Eight-time Ballon d'Or winner, widely regarded as the greatest footballer of all time.", image: null },
-            { id: 17, name: "Julián Álvarez", club: "Atletico Madrid", position: "Forward", age: 24, height: "1.70m", goals: 12, caps: 31, bio: "Energetic forward with excellent movement and finishing.", image: null },
-            { id: 18, name: "Lautaro Martínez", club: "Inter Milan", position: "Forward", age: 26, height: "1.74m", goals: 24, caps: 56, bio: "Clinical striker and captain material for club and country.", image: null },
-            { id: 19, name: "Ángel Di María", club: "Benfica", position: "Midfielder", age: 36, height: "1.78m", goals: 31, caps: 136, bio: "Big-game player with exceptional dribbling and creativity.", image: null },
-            { id: 20, name: "Rodrigo De Paul", club: "Atletico Madrid", position: "Midfielder", age: 30, height: "1.80m", goals: 2, caps: 62, bio: "Energetic midfielder known for work rate and passing.", image: null },
-            { id: 21, name: "Enzo Fernández", club: "Chelsea", position: "Midfielder", age: 23, height: "1.78m", goals: 4, caps: 23, bio: "Creative midfielder with excellent vision and passing range.", image: null },
-            { id: 22, name: "Alexis Mac Allister", club: "Liverpool", position: "Midfielder", age: 25, height: "1.76m", goals: 2, caps: 25, bio: "Versatile midfielder known for technical ability and intelligence.", image: null },
-            { id: 23, name: "Nicolás Otamendi", club: "Benfica", position: "Defender", age: 36, height: "1.83m", goals: 4, caps: 108, bio: "Experienced center-back known for aggressive defending.", image: null },
-            { id: 24, name: "Cristian Romero", club: "Tottenham", position: "Defender", age: 26, height: "1.85m", goals: 1, caps: 32, bio: "Physical center-back with excellent tackling ability.", image: null },
-            { id: 25, name: "Nicolás Tagliafico", club: "Lyon", position: "Defender", age: 31, height: "1.72m", goals: 1, caps: 57, bio: "Experienced left-back known for defensive reliability.", image: null },
-            { id: 26, name: "Gonzalo Montiel", club: "Nottingham Forest", position: "Defender", age: 27, height: "1.75m", goals: 1, caps: 25, bio: "Right-back known for penalty-winning heroics.", image: null },
-            { id: 27, name: "Emiliano Martínez", club: "Aston Villa", position: "Goalkeeper", age: 31, height: "1.95m", goals: 0, caps: 38, bio: "World Cup-winning goalkeeper with exceptional penalty-saving ability.", image: null },
-            { id: 28, name: "Franco Armani", club: "River Plate", position: "Goalkeeper", age: 37, height: "1.89m", goals: 0, caps: 19, bio: "Experienced goalkeeper with excellent reflexes.", image: null },
-            { id: 29, name: "Thiago Almada", club: "Botafogo", position: "Midfielder", age: 23, height: "1.71m", goals: 2, caps: 5, bio: "Creative attacking midfielder with excellent dribbling.", image: null },
-            { id: 30, name: "Alejandro Garnacho", club: "Manchester United", position: "Forward", age: 19, height: "1.80m", goals: 1, caps: 5, bio: "Exciting young winger with pace and skill.", image: null }
-        ]
-    },
-    {
-        id: 3,
-        name: "Brazil",
-        flag: "🇧🇷",
-        formation: "4-3-3",
-        colors: ["#FFD700", "#009C3B", "#002776"],
-        players: [
-            { id: 31, name: "Vinícius Jr", club: "Real Madrid", position: "Forward", age: 23, height: "1.76m", goals: 3, caps: 28, bio: "Electric winger and Champions League winner with exceptional dribbling.", image: null },
-            { id: 32, name: "Neymar Jr", club: "Al Hilal", position: "Forward", age: 32, height: "1.75m", goals: 79, caps: 128, bio: "Brazil's all-time leading goalscorer with incredible skill and creativity.", image: null },
-            { id: 33, name: "Rodrygo", club: "Real Madrid", position: "Forward", age: 23, height: "1.74m", goals: 5, caps: 22, bio: "Versatile forward with excellent technical ability.", image: null },
-            { id: 34, name: "Richarlison", club: "Tottenham", position: "Forward", age: 27, height: "1.84m", goals: 20, caps: 48, bio: "Passionate forward known for work rate and finishing.", image: null },
-            { id: 35, name: "Casemiro", club: "Manchester United", position: "Midfielder", age: 32, height: "1.85m", goals: 7, caps: 75, bio: "World-class defensive midfielder with winning mentality.", image: null },
-            { id: 36, name: "Bruno Guimarães", club: "Newcastle", position: "Midfielder", age: 26, height: "1.82m", goals: 1, caps: 19, bio: "Complete midfielder with passing and defensive ability.", image: null },
-            { id: 37, name: "Lucas Paquetá", club: "West Ham", position: "Midfielder", age: 26, height: "1.80m", goals: 10, caps: 44, bio: "Creative attacking midfielder with flair and vision.", image: null },
-            { id: 38, name: "Marquinhos", club: "PSG", position: "Defender", age: 30, height: "1.83m", goals: 6, caps: 85, bio: "Captain and world-class center-back with leadership.", image: null },
-            { id: 39, name: "Éder Militão", club: "Real Madrid", position: "Defender", age: 26, height: "1.86m", goals: 2, caps: 30, bio: "Powerful center-back with pace and strength.", image: null },
-            { id: 40, name: "Thiago Silva", club: "Fluminense", position: "Defender", age: 39, height: "1.83m", goals: 7, caps: 113, bio: "Legendary defender with exceptional positioning.", image: null },
-            { id: 41, name: "Danilo", club: "Juventus", position: "Defender", age: 32, height: "1.84m", goals: 1, caps: 56, bio: "Versatile full-back with defensive solidity.", image: null },
-            { id: 42, name: "Alex Telles", club: "Al Nassr", position: "Defender", age: 31, height: "1.81m", goals: 0, caps: 12, bio: "Attacking left-back with crossing ability.", image: null },
-            { id: 43, name: "Alisson Becker", club: "Liverpool", position: "Goalkeeper", age: 31, height: "1.93m", goals: 0, caps: 63, bio: "World's best goalkeeper with exceptional shot-stopping.", image: null },
-            { id: 44, name: "Ederson", club: "Manchester City", position: "Goalkeeper", age: 30, height: "1.88m", goals: 0, caps: 25, bio: "Modern goalkeeper with incredible distribution.", image: null },
-            { id: 45, name: "Raphinha", club: "Barcelona", position: "Forward", age: 27, height: "1.76m", goals: 6, caps: 22, bio: "Dynamic winger with pace and crossing ability.", image: null }
-        ]
-    },
-    {
-        id: 4,
-        name: "Spain",
-        flag: "🇪🇸",
-        formation: "4-3-3",
-        colors: ["#C60B1E", "#FFC400", "#AD1519"],
-        players: [
-            { id: 46, name: "Pedri", club: "Barcelona", position: "Midfielder", age: 21, height: "1.74m", goals: 1, caps: 20, bio: "Creative midfielder with exceptional vision and composure.", image: null },
-            { id: 47, name: "Gavi", club: "Barcelona", position: "Midfielder", age: 19, height: "1.73m", goals: 5, caps: 25, bio: "Youngest Spain debutant with incredible energy and talent.", image: null },
-            { id: 48, name: "Álvaro Morata", club: "Atletico Madrid", position: "Forward", age: 31, height: "1.90m", goals: 34, caps: 72, bio: "Target man with excellent aerial ability.", image: null },
-            { id: 49, name: "Dani Olmo", club: "RB Leipzig", position: "Midfielder", age: 26, height: "1.79m", goals: 8, caps: 33, bio: "Creative attacking midfielder with technical excellence.", image: null },
-            { id: 50, name: "Rodri", club: "Manchester City", position: "Midfielder", age: 28, height: "1.91m", goals: 2, caps: 47, bio: "World-class defensive midfielder and Ballon d'Or winner.", image: null },
-            { id: 51, name: "Fabián Ruiz", club: "PSG", position: "Midfielder", age: 28, height: "1.89m", goals: 3, caps: 27, bio: "Technical midfielder with powerful shot.", image: null },
-            { id: 52, name: "Aymeric Laporte", club: "Al Nassr", position: "Defender", age: 30, height: "1.89m", goals: 1, caps: 29, bio: "Ball-playing center-back with excellent passing.", image: null },
-            { id: 53, name: "Pau Torres", club: "Aston Villa", position: "Defender", age: 27, height: "1.91m", goals: 1, caps: 23, bio: "Modern center-back comfortable on the ball.", image: null },
-            { id: 54, name: "Jordi Alba", club: "Inter Miami", position: "Defender", age: 35, height: "1.70m", goals: 10, caps: 93, bio: "Attacking full-back with exceptional pace.", image: null },
-            { id: 55, name: "Dani Carvajal", club: "Real Madrid", position: "Defender", age: 32, height: "1.73m", goals: 1, caps: 44, bio: "Experienced right-back with winning mentality.", image: null },
-            { id: 56, name: "Unai Simón", club: "Athletic Bilbao", position: "Goalkeeper", age: 27, height: "1.90m", goals: 0, caps: 38, bio: "First-choice goalkeeper with excellent reflexes.", image: null },
-            { id: 57, name: "David Raya", club: "Arsenal", position: "Goalkeeper", age: 28, height: "1.83m", goals: 0, caps: 6, bio: "Shot-stopper with modern distribution skills.", image: null },
-            { id: 58, name: "Mikel Oyarzabal", club: "Real Sociedad", position: "Forward", age: 27, height: "1.81m", goals: 11, caps: 31, bio: "Versatile forward with excellent technical ability.", image: null },
-            { id: 59, name: "Ferrán Torres", club: "Barcelona", position: "Forward", age: 24, height: "1.84m", goals: 19, caps: 40, bio: "Dynamic winger with goal-scoring instinct.", image: null },
-            { id: 60, name: "Nico Williams", club: "Athletic Bilbao", position: "Forward", age: 21, height: "1.81m", goals: 3, caps: 15, bio: "Exciting young winger with explosive pace.", image: null }
-        ]
-    },
-    {
-        id: 5,
-        name: "England",
-        flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-        formation: "4-2-3-1",
-        colors: ["#1B458F", "#FFFFFF", "#E00000"],
-        players: [
-            { id: 61, name: "Harry Kane", club: "Bayern Munich", position: "Forward", age: 30, height: "1.88m", goals: 63, caps: 90, bio: "England's all-time leading goalscorer and complete striker.", image: null },
-            { id: 62, name: "Jude Bellingham", club: "Real Madrid", position: "Midfielder", age: 20, height: "1.86m", goals: 4, caps: 29, bio: "Generational talent with incredible maturity and skill.", image: null },
-            { id: 63, name: "Bukayo Saka", club: "Arsenal", position: "Forward", age: 22, height: "1.78m", goals: 11, caps: 32, bio: "Creative winger with excellent dribbling and work rate.", image: null },
-            { id: 64, name: "Phil Foden", club: "Manchester City", position: "Midfielder", age: 24, height: "1.71m", goals: 4, caps: 33, bio: "Technical genius with incredible close control.", image: null },
-            { id: 65, name: "Declan Rice", club: "Arsenal", position: "Midfielder", age: 25, height: "1.85m", goals: 3, caps: 48, bio: "Elite defensive midfielder with leadership.", image: null },
-            { id: 66, name: "Mason Mount", club: "Manchester United", position: "Midfielder", age: 25, height: "1.81m", goals: 8, caps: 36, bio: "Energetic midfielder with goal threat.", image: null },
-            { id: 67, name: "John Stones", club: "Manchester City", position: "Defender", age: 30, height: "1.88m", goals: 3, caps: 69, bio: "Ball-playing defender with tactical intelligence.", image: null },
-            { id: 68, name: "Harry Maguire", club: "Manchester United", position: "Defender", age: 31, height: "1.94m", goals: 7, caps: 63, bio: "Physical center-back with aerial dominance.", image: null },
-            { id: 69, name: "Kyle Walker", club: "Manchester City", position: "Defender", age: 34, height: "1.78m", goals: 1, caps: 82, bio: "Incredible pace and defensive versatility.", image: null },
-            { id: 70, name: "Luke Shaw", club: "Manchester United", position: "Defender", age: 28, height: "1.78m", goals: 3, caps: 31, bio: "Attacking left-back with crossing ability.", image: null },
-            { id: 71, name: "Jordan Pickford", club: "Everton", position: "Goalkeeper", age: 30, height: "1.85m", goals: 0, caps: 58, bio: "First-choice goalkeeper with shot-stopping excellence.", image: null },
-            { id: 72, name: "Aaron Ramsdale", club: "Arsenal", position: "Goalkeeper", age: 26, height: "1.88m", goals: 0, caps: 4, bio: "Modern goalkeeper with good distribution.", image: null },
-            { id: 73, name: "Marcus Rashford", club: "Manchester United", position: "Forward", age: 26, height: "1.80m", goals: 17, caps: 59, bio: "Pacey forward with clinical finishing.", image: null },
-            { id: 74, name: "Jack Grealish", club: "Manchester City", position: "Midfielder", age: 28, height: "1.75m", goals: 2, caps: 35, bio: "Creative dribbler with exceptional ball control.", image: null },
-            { id: 75, name: "Trent Alexander-Arnold", club: "Liverpool", position: "Defender", age: 25, height: "1.80m", goals: 2, caps: 23, bio: "Revolutionary right-back with incredible passing.", image: null }
-        ]
-    },
-    {
-        id: 6,
-        name: "Germany",
-        flag: "🇩🇪",
-        formation: "4-2-3-1",
-        colors: ["#000000", "#DD0000", "#FFCE00"],
-        players: [
-            { id: 76, name: "Jamal Musiala", club: "Bayern Munich", position: "Midfielder", age: 21, height: "1.84m", goals: 2, caps: 27, bio: "Dribbling genius with exceptional close control.", image: null },
-            { id: 77, name: "Kai Havertz", club: "Arsenal", position: "Forward", age: 25, height: "1.93m", goals: 15, caps: 45, bio: "Versatile attacker with excellent technique.", image: null },
-            { id: 78, name: "İlkay Gündoğan", club: "Barcelona", position: "Midfielder", age: 33, height: "1.80m", goals: 18, caps: 76, bio: "Captain with exceptional football intelligence.", image: null },
-            { id: 79, name: "Joshua Kimmich", club: "Bayern Munich", position: "Midfielder", age: 29, height: "1.77m", goals: 6, caps: 82, bio: "World-class midfielder with incredible versatility.", image: null },
-            { id: 80, name: "Leon Goretzka", club: "Bayern Munich", position: "Midfielder", age: 29, height: "1.89m", goals: 14, caps: 55, bio: "Powerful box-to-box midfielder.", image: null },
-            { id: 81, name: "Thomas Müller", club: "Bayern Munich", position: "Forward", age: 34, height: "1.85m", goals: 45, caps: 126, bio: "Legendary Raumdeuter with incredible football IQ.", image: null },
-            { id: 82, name: "Leroy Sané", club: "Bayern Munich", position: "Forward", age: 28, height: "1.83m", goals: 13, caps: 58, bio: "Explosive winger with pace and skill.", image: null },
-            { id: 83, name: "Antonio Rüdiger", club: "Real Madrid", position: "Defender", age: 31, height: "1.90m", goals: 3, caps: 65, bio: "Physical center-back with aggressive defending.", image: null },
-            { id: 84, name: "Niklas Süle", club: "Borussia Dortmund", position: "Defender", age: 28, height: "1.95m", goals: 1, caps: 48, bio: "Powerful center-back with surprising agility.", image: null },
-            { id: 85, name: "David Raum", club: "RB Leipzig", position: "Defender", age: 26, height: "1.80m", goals: 0, caps: 21, bio: "Attacking left-back with crossing ability.", image: null },
-            { id: 86, name: "Manuel Neuer", club: "Bayern Munich", position: "Goalkeeper", age: 38, height: "1.93m", goals: 0, caps: 119, bio: "Revolutionary goalkeeper and sweeper-keeper.", image: null },
-            { id: 87, name: "Marc-André ter Stegen", club: "Barcelona", position: "Goalkeeper", age: 32, height: "1.87m", goals: 0, caps: 38, bio: "Elite shot-stopper with exceptional reflexes.", image: null },
-            { id: 88, name: "Florian Wirtz", club: "Bayer Leverkusen", position: "Midfielder", age: 21, height: "1.76m", goals: 2, caps: 18, bio: "Creative prodigy with incredible vision.", image: null },
-            { id: 89, name: "Niclas Füllkrug", club: "Borussia Dortmund", position: "Forward", age: 31, height: "1.89m", goals: 11, caps: 16, bio: "Target man with powerful finishing.", image: null },
-            { id: 90, name: "Jonathan Tah", club: "Bayer Leverkusen", position: "Defender", age: 28, height: "1.95m", goals: 0, caps: 22, bio: "Physical center-back with aerial strength.", image: null }
-        ]
-    },
-    {
-        id: 7,
-        name: "Portugal",
-        flag: "🇵🇹",
-        formation: "4-3-3",
-        colors: ["#006600", "#FF0000", "#FFFFFF"],
-        players: [
-            { id: 91, name: "Cristiano Ronaldo", club: "Al Nassr", position: "Forward", age: 39, height: "1.87m", goals: 128, caps: 205, bio: "Five-time Ballon d'Or winner and all-time leading goalscorer.", image: null },
-            { id: 92, name: "Bruno Fernandes", club: "Manchester United", position: "Midfielder", age: 29, height: "1.79m", goals: 22, caps: 64, bio: "Creative playmaker with goal-scoring ability.", image: null },
-            { id: 93, name: "Bernardo Silva", club: "Manchester City", position: "Midfielder", age: 29, height: "1.73m", goals: 12, caps: 87, bio: "Technical wizard with incredible work rate.", image: null },
-            { id: 94, name: "Rúben Dias", club: "Manchester City", position: "Defender", age: 27, height: "1.87m", goals: 2, caps: 52, bio: "World-class center-back and leader.", image: null },
-            { id: 95, name: "João Cancelo", club: "Barcelona", position: "Defender", age: 30, height: "1.82m", goals: 5, caps: 53, bio: "Versatile full-back with technical excellence.", image: null },
-            { id: 96, name: "Rafael Leão", club: "AC Milan", position: "Forward", age: 25, height: "1.88m", goals: 4, caps: 25, bio: "Explosive winger with incredible pace.", image: null },
-            { id: 97, name: "Diogo Jota", club: "Liverpool", position: "Forward", age: 27, height: "1.78m", goals: 13, caps: 36, bio: "Clinical forward with exceptional finishing.", image: null },
-            { id: 98, name: "João Félix", club: "Barcelona", position: "Forward", age: 24, height: "1.81m", goals: 7, caps: 34, bio: "Creative forward with flair and technique.", image: null },
-            { id: 99, name: "Rúben Neves", club: "Al Hilal", position: "Midfielder", age: 27, height: "1.80m", goals: 4, caps: 46, bio: "Deep-lying playmaker with passing range.", image: null },
-            { id: 100, name: "Vitinha", club: "PSG", position: "Midfielder", age: 24, height: "1.72m", goals: 0, caps: 16, bio: "Technical midfielder with press resistance.", image: null },
-            { id: 101, name: "Pepe", club: "Porto", position: "Defender", age: 41, height: "1.88m", goals: 8, caps: 136, bio: "Legendary defender and European champion.", image: null },
-            { id: 102, name: "Nuno Mendes", club: "PSG", position: "Defender", age: 21, height: "1.84m", goals: 0, caps: 20, bio: "Explosive left-back with athleticism.", image: null },
-            { id: 103, name: "Diogo Costa", club: "Porto", position: "Goalkeeper", age: 24, height: "1.86m", goals: 0, caps: 22, bio: "Modern goalkeeper with excellent reflexes.", image: null },
-            { id: 104, name: "Gonçalo Ramos", club: "PSG", position: "Forward", age: 22, height: "1.85m", goals: 4, caps: 11, bio: "Promising striker with goal instinct.", image: null },
-            { id: 105, name: "António Silva", club: "Benfica", position: "Defender", age: 20, height: "1.87m", goals: 0, caps: 10, bio: "Young defensive prodigy with composure.", image: null }
-        ]
-    },
-    {
-        id: 8,
-        name: "Netherlands",
-        flag: "🇳🇱",
-        formation: "4-3-3",
-        colors: ["#FF6200", "#FFFFFF", "#21468B"],
-        players: [
-            { id: 106, name: "Virgil van Dijk", club: "Liverpool", position: "Defender", age: 32, height: "1.93m", goals: 7, caps: 64, bio: "World-class center-back and captain.", image: null },
-            { id: 107, name: "Frenkie de Jong", club: "Barcelona", position: "Midfielder", age: 27, height: "1.81m", goals: 2, caps: 54, bio: "Elegant midfielder with exceptional dribbling.", image: null },
-            { id: 108, name: "Memphis Depay", club: "Atletico Madrid", position: "Forward", age: 30, height: "1.76m", goals: 45, caps: 90, bio: "Creative forward with flair and power.", image: null },
-            { id: 109, name: "Cody Gakpo", club: "Liverpool", position: "Forward", age: 25, height: "1.93m", goals: 9, caps: 23, bio: "Versatile forward with physical presence.", image: null },
-            { id: 110, name: "Xavi Simons", club: "RB Leipzig", position: "Midfielder", age: 21, height: "1.79m", goals: 1, caps: 14, bio: "Creative prodigy with exceptional talent.", image: null },
-            { id: 111, name: "Denzel Dumfries", club: "Inter Milan", position: "Defender", age: 28, height: "1.88m", goals: 6, caps: 52, bio: "Athletic right-back with goal threat.", image: null },
-            { id: 112, name: "Nathan Aké", club: "Manchester City", position: "Defender", age: 29, height: "1.80m", goals: 5, caps: 43, bio: "Versatile defender with technical ability.", image: null },
-            { id: 113, name: "Matthijs de Ligt", club: "Bayern Munich", position: "Defender", age: 24, height: "1.89m", goals: 2, caps: 44, bio: "Physical center-back with leadership.", image: null },
-            { id: 114, name: "Daley Blind", club: "Girona", position: "Defender", age: 34, height: "1.80m", goals: 3, caps: 103, bio: "Experienced defender with intelligence.", image: null },
-            { id: 115, name: "Marten de Roon", club: "Atalanta", position: "Midfielder", age: 33, height: "1.85m", goals: 1, caps: 42, bio: "Defensive midfielder with work rate.", image: null },
-            { id: 116, name: "Teun Koopmeiners", club: "Atalanta", position: "Midfielder", age: 26, height: "1.84m", goals: 2, caps: 21, bio: "Goal-scoring midfielder with technique.", image: null },
-            { id: 117, name: "Wout Weghorst", club: "Hoffenheim", position: "Forward", age: 31, height: "1.97m", goals: 11, caps: 36, bio: "Target man with aerial ability.", image: null },
-            { id: 118, name: "Steven Bergwijn", club: "Ajax", position: "Forward", age: 26, height: "1.78m", goals: 8, caps: 33, bio: "Pacey winger with dribbling skills.", image: null },
-            { id: 119, name: "Justin Bijlow", club: "Feyenoord", position: "Goalkeeper", age: 26, height: "1.88m", goals: 0, caps: 8, bio: "Talented goalkeeper with reflexes.", image: null },
-            { id: 120, name: "Mark Flekken", club: "Brentford", position: "Goalkeeper", age: 30, height: "1.95m", goals: 0, caps: 6, bio: "Reliable shot-stopper with presence.", image: null }
-        ]
-    },
-    {
-        id: 9,
-        name: "Uzbekistan",
-        flag: "🇺🇿",
-        formation: "4-4-2",
-        colors: ["#1EB53A", "#0099B0", "#FFFFFF"],
-        players: [
-            { id: 121, name: "Eldor Shomurodov", club: "Cagliari", position: "Forward", age: 28, height: "1.90m", goals: 13, caps: 68, bio: "Uzbekistan's star striker with physical presence.", image: null },
-            { id: 122, name: "Jaloliddin Masharipov", club: "Esteghlal", position: "Midfielder", age: 30, height: "1.74m", goals: 12, caps: 55, bio: "Creative winger with exceptional dribbling.", image: null },
-            { id: 123, name: "Oston Urunov", club: "Persepolis", position: "Midfielder", age: 23, height: "1.79m", goals: 4, caps: 24, bio: "Talented attacking midfielder with vision.", image: null },
-            { id: 124, name: "Husniddin Aliqulov", club: "Çaykur Rizespor", position: "Defender", age: 25, height: "1.85m", goals: 1, caps: 27, bio: "Solid center-back with defensive strength.", image: null },
-            { id: 125, name: "Farrukh Sayfiev", club: "Pakhtakor", position: "Defender", age: 33, height: "1.80m", goals: 2, caps: 44, bio: "Experienced full-back with leadership.", image: null },
-            { id: 126, name: "Odil Ahmedov", club: "Tianjin Jinmen Tiger", position: "Midfielder", age: 36, height: "1.81m", goals: 19, caps: 108, bio: "Legendary captain and midfield general.", image: null },
-            { id: 127, name: "Igor Sergeev", club: "Pakhtakor", position: "Forward", age: 31, height: "1.87m", goals: 16, caps: 64, bio: "Clinical striker with goal-scoring instinct.", image: null },
-            { id: 128, name: "Azizbek Turgunboev", club: "Navbahor", position: "Midfielder", age: 29, height: "1.78m", goals: 3, caps: 33, bio: "Dynamic midfielder with energy.", image: null },
-            { id: 129, name: "Umar Eshmurodov", club: "Nasaf", position: "Defender", age: 31, height: "1.82m", goals: 0, caps: 16, bio: "Reliable center-back with experience.", image: null },
-            { id: 130, name: "Dostonbek Khamdamov", club: "Pakhtakor", position: "Midfielder", age: 27, height: "1.77m", goals: 6, caps: 32, bio: "Creative midfielder with technical skill.", image: null },
-            { id: 131, name: "Khojiakbar Alijonov", club: "Navbahor", position: "Defender", age: 27, height: "1.82m", goals: 1, caps: 22, bio: "Attacking full-back with crossing.", image: null },
-            { id: 132, name: "Abror Ismoilov", club: "Navbahor", position: "Goalkeeper", age: 26, height: "1.91m", goals: 0, caps: 5, bio: "Promising goalkeeper with potential.", image: null },
-            { id: 133, name: "Utkir Yusupov", club: "Navbahor", position: "Goalkeeper", age: 33, height: "1.88m", goals: 0, caps: 20, bio: "Experienced goalkeeper with reflexes.", image: null },
-            { id: 134, name: "Bobur Abdikholikov", club: "Nasaf", position: "Forward", age: 27, height: "1.86m", goals: 5, caps: 15, bio: "Target forward with aerial ability.", image: null },
-            { id: 135, name: "Shakhzod Ubaydullaev", club: "Pakhtakor", position: "Midfielder", age: 26, height: "1.76m", goals: 2, caps: 12, bio: "Technical midfielder with passing.", image: null }
-        ]
-    },
-    {
-        id: 10,
-        name: "Colombia",
-        flag: "🇨🇴",
-        formation: "4-3-3",
-        colors: ["#FCD116", "#003893", "#CE1126"],
-        players: [
-            { id: 136, name: "Luis Díaz", club: "Liverpool", position: "Forward", age: 27, height: "1.80m", goals: 12, caps: 48, bio: "Electric winger with incredible dribbling.", image: null },
-            { id: 137, name: "James Rodríguez", club: "São Paulo", position: "Midfielder", age: 32, height: "1.80m", goals: 28, caps: 95, bio: "Creative playmaker with golden left foot.", image: null },
-            { id: 138, name: "Radamel Falcao", club: "Rayo Vallecano", position: "Forward", age: 38, height: "1.77m", goals: 36, caps: 104, bio: "Legendary striker and all-time great.", image: null },
-            { id: 139, name: "Juan Cuadrado", club: "Inter Milan", position: "Midfielder", age: 36, height: "1.79m", goals: 11, caps: 116, bio: "Dynamic winger with pace and skill.", image: null },
-            { id: 140, name: "Dávinson Sánchez", club: "Galatasaray", position: "Defender", age: 28, height: "1.87m", goals: 2, caps: 58, bio: "Physical center-back with strength.", image: null },
-            { id: 141, name: "Yerry Mina", club: "Cagliari", position: "Defender", age: 29, height: "1.95m", goals: 7, caps: 41, bio: "Towering defender with aerial threat.", image: null },
-            { id: 142, name: "Daniel Muñoz", club: "Crystal Palace", position: "Defender", age: 28, height: "1.82m", goals: 1, caps: 25, bio: "Attacking right-back with energy.", image: null },
-            { id: 143, name: "Jefferson Lerma", club: "Crystal Palace", position: "Midfielder", age: 29, height: "1.79m", goals: 3, caps: 41, bio: "Defensive midfielder with work rate.", image: null },
-            { id: 144, name: "Mateus Uribe", club: "Al Sadd", position: "Midfielder", age: 33, height: "1.82m", goals: 6, caps: 55, bio: "Box-to-box midfielder with goals.", image: null },
-            { id: 145, name: "Rafael Santos Borré", club: "Werder Bremen", position: "Forward", age: 28, height: "1.74m", goals: 6, caps: 32, bio: "Hard-working forward with finishing.", image: null },
-            { id: 146, name: "Jhon Durán", club: "Aston Villa", position: "Forward", age: 20, height: "1.85m", goals: 1, caps: 7, bio: "Promising young striker with potential.", image: null },
-            { id: 147, name: "Jhon Lucumí", club: "Bologna", position: "Defender", age: 26, height: "1.87m", goals: 0, caps: 18, bio: "Ball-playing center-back with composure.", image: null },
-            { id: 148, name: "Deiver Machado", club: "Lens", position: "Defender", age: 30, height: "1.78m", goals: 1, caps: 9, bio: "Attacking left-back with pace.", image: null },
-            { id: 149, name: "Camilo Vargas", club: "Atlas", position: "Goalkeeper", age: 35, height: "1.85m", goals: 0, caps: 22, bio: "Experienced goalkeeper with leadership.", image: null },
-            { id: 150, name: "Álvaro Montero", club: "Millonarios", position: "Goalkeeper", age: 29, height: "1.95m", goals: 0, caps: 8, bio: "Tall goalkeeper with shot-stopping.", image: null }
-        ]
-    },
-    {
-        id: 11,
-        name: "DR Congo",
-        flag: "🇨🇩",
-        formation: "4-4-2",
-        colors: ["#007FFF", "#F7D117", "#CE1026"],
-        players: [
-            { id: 151, name: "Yoane Wissa", club: "Brentford", position: "Forward", age: 27, height: "1.76m", goals: 6, caps: 25, bio: "Pacey forward with goal-scoring instinct.", image: null },
-            { id: 152, name: "Cédric Bakambu", club: "Betis", position: "Forward", age: 33, height: "1.82m", goals: 16, caps: 48, bio: "Experienced striker with pace.", image: null },
-            { id: 153, name: "Chancel Mbemba", club: "Marseille", position: "Defender", age: 29, height: "1.82m", goals: 3, caps: 75, bio: "Powerful center-back with leadership.", image: null },
-            { id: 154, name: "Arthur Masuaku", club: "Besiktas", position: "Defender", age: 30, height: "1.79m", goals: 1, caps: 18, bio: "Attacking full-back with skill.", image: null },
-            { id: 155, name: "Gaël Kakuta", club: "Amiens", position: "Midfielder", age: 33, height: "1.73m", goals: 4, caps: 28, bio: "Creative attacking midfielder with flair.", image: null },
-            { id: 156, name: "Théo Bongonda", club: "Spartak Moscow", position: "Midfielder", age: 28, height: "1.77m", goals: 2, caps: 12, bio: "Dynamic winger with dribbling.", image: null },
-            { id: 157, name: "Samuel Moutoussamy", club: "Nantes", position: "Midfielder", age: 27, height: "1.76m", goals: 0, caps: 18, bio: "Box-to-box midfielder with energy.", image: null },
-            { id: 158, name: "Edo Kayembe", club: "Watford", position: "Midfielder", age: 26, height: "1.83m", goals: 1, caps: 10, bio: "Defensive midfielder with physicality.", image: null },
-            { id: 159, name: "Dylan Batubinsika", club: "Saint-Étienne", position: "Defender", age: 28, height: "1.86m", goals: 0, caps: 8, bio: "Solid center-back with strength.", image: null },
-            { id: 160, name: "Henoc Inonga Baka", club: "Simba SC", position: "Defender", age: 26, height: "1.84m", goals: 0, caps: 15, bio: "Versatile defender with pace.", image: null },
-            { id: 161, name: "Simon Banza", club: "Braga", position: "Forward", age: 27, height: "1.89m", goals: 4, caps: 11, bio: "Tall striker with aerial ability.", image: null },
-            { id: 162, name: "Fiston Mayele", club: "Pyramids FC", position: "Forward", age: 29, height: "1.83m", goals: 5, caps: 20, bio: "Clinical striker with finishing.", image: null },
-            { id: 163, name: "Lionel Mpasi", club: "Rodez", position: "Goalkeeper", age: 29, height: "1.84m", goals: 0, caps: 12, bio: "Reliable goalkeeper with reflexes.", image: null },
-            { id: 164, name: "Joël Kiassumbua", club: "Le Mont", position: "Goalkeeper", age: 32, height: "1.91m", goals: 0, caps: 6, bio: "Experienced goalkeeper with presence.", image: null },
-            { id: 165, name: "Grady Diangana", club: "West Brom", position: "Midfielder", age: 26, height: "1.79m", goals: 1, caps: 4, bio: "Creative winger with dribbling.", image: null }
-        ]
-    }
+'use strict';
+
+/* =============================================
+   DATA
+============================================= */
+const COUNTRIES_DB = [
+  // UEFA
+  { id:'brazil',      name:'Brazil',       flag:'🇧🇷', conf:'CONMEBOL', rank:1,  wc:5, players:13000, goals:8200,  color:'#009C3B', founded:1914, nickname:'The Seleção',    stadium:'Maracanã',        caps:500, trophies:['5× World Cup','9× Copa América'] },
+  { id:'france',      name:'France',       flag:'🇫🇷', conf:'UEFA',    rank:2,  wc:2, players:11000, goals:6800,  color:'#002395', founded:1919, nickname:'Les Bleus',      stadium:'Stade de France', caps:500, trophies:['2× World Cup','2× Euros'] },
+  { id:'germany',     name:'Germany',      flag:'🇩🇪', conf:'UEFA',    rank:3,  wc:4, players:12000, goals:7100,  color:'#000000', founded:1900, nickname:'Die Mannschaft', stadium:'Allianz Arena',   caps:500, trophies:['4× World Cup','3× Euros'] },
+  { id:'argentina',   name:'Argentina',    flag:'🇦🇷', conf:'CONMEBOL',rank:4,  wc:3, players:10000, goals:7500,  color:'#74ACDF', founded:1893, nickname:'La Albiceleste', stadium:'Monumental',      caps:500, trophies:['3× World Cup','15× Copa América'] },
+  { id:'spain',       name:'Spain',        flag:'🇪🇸', conf:'UEFA',    rank:5,  wc:1, players:10500, goals:6200,  color:'#AA151B', founded:1913, nickname:'La Roja',        stadium:'Bernabéu',        caps:500, trophies:['1× World Cup','4× Euros'] },
+  { id:'england',     name:'England',      flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', conf:'UEFA',    rank:6,  wc:1, players:9800,  goals:5900,  color:'#FFFFFF', founded:1863, nickname:'Three Lions',    stadium:'Wembley',         caps:500, trophies:['1× World Cup'] },
+  { id:'portugal',    name:'Portugal',     flag:'🇵🇹', conf:'UEFA',    rank:7,  wc:0, players:7200,  goals:4800,  color:'#006600', founded:1914, nickname:'A Seleção',      stadium:'Luz',             caps:500, trophies:['1× Euro','1× Nations League'] },
+  { id:'netherlands', name:'Netherlands',  flag:'🇳🇱', conf:'UEFA',    rank:8,  wc:0, players:6800,  goals:4500,  color:'#FF6600', founded:1889, nickname:'Oranje',         stadium:'Johan Cruyff ArenA', caps:500, trophies:['1× Euro','1× Nations League'] },
+  { id:'italy',       name:'Italy',        flag:'🇮🇹', conf:'UEFA',    rank:9,  wc:4, players:9200,  goals:5600,  color:'#003399', founded:1898, nickname:'Gli Azzurri',    stadium:'San Siro',        caps:500, trophies:['4× World Cup','2× Euros'] },
+  { id:'belgium',     name:'Belgium',      flag:'🇧🇪', conf:'UEFA',    rank:10, wc:0, players:5100,  goals:3200,  color:'#000000', founded:1895, nickname:'Red Devils',     stadium:'King Baudouin',   caps:500, trophies:[] },
+  { id:'croatia',     name:'Croatia',      flag:'🇭🇷', conf:'UEFA',    rank:11, wc:0, players:3400,  goals:2100,  color:'#FF0000', founded:1912, nickname:'Vatreni',        stadium:'Poljud',          caps:500, trophies:['1× Nations League'] },
+  { id:'denmark',     name:'Denmark',      flag:'🇩🇰', conf:'UEFA',    rank:12, wc:0, players:4200,  goals:2800,  color:'#C60C30', founded:1889, nickname:'Danish Dynamite',stadium:'Parken',          caps:500, trophies:['1× Euro'] },
+  { id:'uruguay',     name:'Uruguay',      flag:'🇺🇾', conf:'CONMEBOL',rank:13, wc:2, players:5200,  goals:3800,  color:'#75AADB', founded:1900, nickname:'La Celeste',     stadium:'Centenario',      caps:500, trophies:['2× World Cup','15× Copa América'] },
+  { id:'colombia',    name:'Colombia',     flag:'🇨🇴', conf:'CONMEBOL',rank:14, wc:0, players:6100,  goals:3400,  color:'#FCD116', founded:1924, nickname:'Los Cafeteros',  stadium:'El Campín',       caps:500, trophies:['1× Copa América'] },
+  { id:'mexico',      name:'Mexico',       flag:'🇲🇽', conf:'CONCACAF',rank:15, wc:0, players:7800,  goals:4100,  color:'#006847', founded:1927, nickname:'El Tri',         stadium:'Azteca',          caps:500, trophies:['2× Gold Cup'] },
+  { id:'usa',         name:'USA',          flag:'🇺🇸', conf:'CONCACAF',rank:16, wc:0, players:8200,  goals:3200,  color:'#B22234', founded:1913, nickname:'The Stars and Stripes', stadium:'Rose Bowl', caps:500, trophies:['3× Gold Cup'] },
+  { id:'senegal',     name:'Senegal',      flag:'🇸🇳', conf:'CAF',     rank:17, wc:0, players:4100,  goals:2200,  color:'#00853F', founded:1960, nickname:'Lions of Teranga',stadium:'Léopold Sédar Senghor', caps:500, trophies:['2× AFCON'] },
+  { id:'morocco',     name:'Morocco',      flag:'🇲🇦', conf:'CAF',     rank:18, wc:0, players:3800,  goals:2000,  color:'#C1272D', founded:1955, nickname:'Atlas Lions',    stadium:'Grand Stade de Casablanca', caps:500, trophies:['1× AFCON'] },
+  { id:'nigeria',     name:'Nigeria',      flag:'🇳🇬', conf:'CAF',     rank:19, wc:0, players:5200,  goals:2900,  color:'#008751', founded:1945, nickname:'Super Eagles',   stadium:'National Stadium Abuja', caps:500, trophies:['3× AFCON'] },
+  { id:'egypt',       name:'Egypt',        flag:'🇪🇬', conf:'CAF',     rank:20, wc:0, players:4600,  goals:2700,  color:'#CE1126', founded:1921, nickname:'Pharaohs',       stadium:'Cairo International', caps:500, trophies:['7× AFCON'] },
+  { id:'japan',       name:'Japan',        flag:'🇯🇵', conf:'AFC',     rank:21, wc:0, players:5600,  goals:2500,  color:'#BC002D', founded:1921, nickname:'Samurai Blue',   stadium:'Japan National', caps:500, trophies:['4× AFC Championship'] },
+  { id:'southkorea',  name:'South Korea',  flag:'🇰🇷', conf:'AFC',     rank:22, wc:0, players:4800,  goals:2400,  color:'#003478', founded:1928, nickname:'Taeguk Warriors',stadium:'Seoul World Cup', caps:500, trophies:['2× AFC Championship'] },
+  { id:'iran',        name:'Iran',         flag:'🇮🇷', conf:'AFC',     rank:23, wc:0, players:4200,  goals:2100,  color:'#239F40', founded:1920, nickname:'Team Melli',     stadium:'Azadi',           caps:500, trophies:['3× AFC Championship'] },
+  { id:'australia',   name:'Australia',    flag:'🇦🇺', conf:'AFC',     rank:24, wc:0, players:5100,  goals:2300,  color:'#FFD700', founded:1961, nickname:'Socceroos',      stadium:'Stadium Australia', caps:500, trophies:['1× OFC Nations Cup'] },
+  { id:'chile',       name:'Chile',        flag:'🇨🇱', conf:'CONMEBOL',rank:25, wc:0, players:4100,  goals:2600,  color:'#D52B1E', founded:1895, nickname:'La Roja',        stadium:'Estadio Nacional', caps:500, trophies:['2× Copa América'] },
+  { id:'sweden',      name:'Sweden',       flag:'🇸🇪', conf:'UEFA',    rank:26, wc:0, players:5200,  goals:3200,  color:'#006AA7', founded:1904, nickname:'Blågult',        stadium:'Friends Arena',   caps:500, trophies:[] },
+  { id:'switzerland', name:'Switzerland',  flag:'🇨🇭', conf:'UEFA',    rank:27, wc:0, players:4800,  goals:2900,  color:'#FF0000', founded:1895, nickname:'Nati',           stadium:'Stade de Suisse', caps:500, trophies:[] },
+  { id:'austria',     name:'Austria',      flag:'🇦🇹', conf:'UEFA',    rank:28, wc:0, players:3900,  goals:2300,  color:'#ED2939', founded:1904, nickname:'Team Austria',   stadium:'Ernst Happel',    caps:500, trophies:[] },
+  { id:'ghana',       name:'Ghana',        flag:'🇬🇭', conf:'CAF',     rank:29, wc:0, players:3600,  goals:2100,  color:'#006B3F', founded:1957, nickname:'Black Stars',    stadium:'Accra Sports',    caps:500, trophies:['4× AFCON'] },
+  { id:'ecuador',     name:'Ecuador',      flag:'🇪🇨', conf:'CONMEBOL',rank:30, wc:0, players:3800,  goals:2000,  color:'#FFD100', founded:1925, nickname:'La Tricolor',    stadium:'Estadio Rodrigo Paz', caps:500, trophies:[] },
+  { id:'poland',      name:'Poland',       flag:'🇵🇱', conf:'UEFA',    rank:31, wc:0, players:5300,  goals:3000,  color:'#DC143C', founded:1911, nickname:'Biało-czerwoni', stadium:'National Stadium Warsaw', caps:500, trophies:[] },
+  { id:'turkey',      name:'Turkey',       flag:'🇹🇷', conf:'UEFA',    rank:32, wc:0, players:5600,  goals:3100,  color:'#E30A17', founded:1923, nickname:'Ay Yıldızlılar', stadium:'Atatürk Olympic', caps:500, trophies:[] },
+  { id:'ukraine',     name:'Ukraine',      flag:'🇺🇦', conf:'UEFA',    rank:33, wc:0, players:4700,  goals:2700,  color:'#005BBB', founded:1991, nickname:'Zbirna',         stadium:'Olympic NSC',     caps:500, trophies:[] },
+  { id:'russia',      name:'Russia',       flag:'🇷🇺', conf:'UEFA',    rank:34, wc:0, players:6200,  goals:3400,  color:'#D52B1E', founded:1912, nickname:'Sbornaya',       stadium:'Luzhniki',        caps:500, trophies:['1× Euro'] },
+  { id:'czechia',     name:'Czech Republic',flag:'🇨🇿',conf:'UEFA',    rank:35, wc:0, players:4100,  goals:2400,  color:'#11457E', founded:1901, nickname:'Národní tým',    stadium:'Sinobo Stadium',  caps:500, trophies:['1× Euro'] },
+  { id:'cameroon',    name:'Cameroon',     flag:'🇨🇲', conf:'CAF',     rank:36, wc:0, players:3900,  goals:2200,  color:'#007A5E', founded:1959, nickname:'Indomitable Lions',stadium:'Stade Omnisports', caps:500, trophies:['5× AFCON'] },
+  { id:'costarica',   name:'Costa Rica',   flag:'🇨🇷', conf:'CONCACAF',rank:37, wc:0, players:2800,  goals:1600,  color:'#002B7F', founded:1921, nickname:'Los Ticos',      stadium:'Estadio Nacional', caps:500, trophies:['3× CONCACAF'] },
+  { id:'serbia',      name:'Serbia',       flag:'🇷🇸', conf:'UEFA',    rank:38, wc:0, players:4200,  goals:2500,  color:'#C6363C', founded:1919, nickname:'Orlovi',         stadium:'Rajko Mitić',     caps:500, trophies:[] },
+  { id:'newzealand',  name:'New Zealand',  flag:'🇳🇿', conf:'OFC',     rank:39, wc:0, players:2100,  goals:1200,  color:'#000000', founded:1938, nickname:'All Whites',     stadium:'Eden Park',       caps:500, trophies:['5× OFC Nations Cup'] },
+  { id:'qatar',       name:'Qatar',        flag:'🇶🇦', conf:'AFC',     rank:40, wc:0, players:1800,  goals:900,   color:'#8D1B3D', founded:1960, nickname:'Maroon',         stadium:'Lusail',          caps:500, trophies:['1× AFC Championship'] },
 ];
 
-// ============================================
-// UTILITIES
-// ============================================
-const getRandomImage = (playerName) => {
-    const emojis = ["⭐", "🔥", "⚡", "🎯", "💫", "✨", "🌟", "⚽", "🏆", "🎩"];
-    return emojis[Math.floor(Math.random() * emojis.length)];
-};
+const CONF_DATA = [
+  { code:'UEFA',     name:'Union of European Football Associations', region:'Europe',        members:55,  color:'#003399', emoji:'🏆', founded:1954, wcs:13 },
+  { code:'CONMEBOL', name:'South American Football Confederation',   region:'South America', members:10,  color:'#FFD700', emoji:'🌎', founded:1916, wcs:10 },
+  { code:'CAF',      name:'Confederation of African Football',       region:'Africa',        members:54,  color:'#009A44', emoji:'🌍', founded:1957, wcs:1  },
+  { code:'AFC',      name:'Asian Football Confederation',            region:'Asia & Oceania',members:47,  color:'#D4002D', emoji:'🌏', founded:1954, wcs:1  },
+  { code:'CONCACAF', name:'Confederation of North, Central America', region:'N&C America',   members:41,  color:'#0066CC', emoji:'🌐', founded:1961, wcs:1  },
+  { code:'OFC',      name:'Oceania Football Confederation',          region:'Oceania',       members:14,  color:'#00AAFF', emoji:'🏝️', founded:1966, wcs:0  },
+];
 
-// ============================================
-// PARTICLE BACKGROUND SYSTEM
-// ============================================
-class ParticleBackground {
-    constructor() {
-        this.canvas = null;
-        this.ctx = null;
-        this.particles = [];
-        this.init();
-    }
+/* =============================================
+   STATE
+============================================= */
+let activeConf = 'ALL';
+let activeSort = 'rank';
+let searchQ    = '';
+let visibleCount = 16;
+const PAGE_SIZE  = 16;
 
-    init() {
-        this.canvas = document.createElement('canvas');
-        this.canvas.style.position = 'fixed';
-        this.canvas.style.top = '0';
-        this.canvas.style.left = '0';
-        this.canvas.style.width = '100%';
-        this.canvas.style.height = '100%';
-        this.canvas.style.pointerEvents = 'none';
-        this.canvas.style.zIndex = '0';
-        document.body.insertBefore(this.canvas, document.body.firstChild);
-        
-        this.ctx = this.canvas.getContext('2d');
-        this.resize();
-        
-        window.addEventListener('resize', () => this.resize());
-        
-        for (let i = 0; i < 100; i++) {
-            this.particles.push({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                radius: Math.random() * 2 + 1,
-                alpha: Math.random() * 0.5,
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5
-            });
-        }
-        
-        this.animate();
-    }
-
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-
-    animate() {
-        if (!this.ctx) return;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        for (let p of this.particles) {
-            p.x += p.speedX;
-            p.y += p.speedY;
-            
-            if (p.x < 0) p.x = this.canvas.width;
-            if (p.x > this.canvas.width) p.x = 0;
-            if (p.y < 0) p.y = this.canvas.height;
-            if (p.y > this.canvas.height) p.y = 0;
-            
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(0, 243, 255, ${p.alpha})`;
-            this.ctx.fill();
-        }
-        
-        requestAnimationFrame(() => this.animate());
-    }
+/* =============================================
+   RENDER COUNTRIES
+============================================= */
+function getFiltered() {
+  let data = [...COUNTRIES_DB];
+  if (activeConf !== 'ALL') data = data.filter(c => c.conf === activeConf);
+  if (searchQ) data = data.filter(c => c.name.toLowerCase().includes(searchQ));
+  data.sort((a, b) => {
+    if (activeSort === 'rank')    return a.rank - b.rank;
+    if (activeSort === 'name')    return a.name.localeCompare(b.name);
+    if (activeSort === 'wc')      return b.wc - a.wc;
+    if (activeSort === 'players') return b.players - a.players;
+    return 0;
+  });
+  return data;
 }
 
-// ============================================
-// MOUSE GLOW EFFECT
-// ============================================
-class MouseGlow {
-    constructor() {
-        this.glow = null;
-        this.init();
-    }
-
-    init() {
-        this.glow = document.createElement('div');
-        this.glow.style.position = 'fixed';
-        this.glow.style.width = '400px';
-        this.glow.style.height = '400px';
-        this.glow.style.borderRadius = '50%';
-        this.glow.style.background = 'radial-gradient(circle, rgba(0,243,255,0.1) 0%, transparent 70%)';
-        this.glow.style.pointerEvents = 'none';
-        this.glow.style.zIndex = '1';
-        this.glow.style.transition = 'transform 0.1s ease';
-        document.body.appendChild(this.glow);
-        
-        document.addEventListener('mousemove', (e) => {
-            this.glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
-        });
-    }
-}
-
-// ============================================
-// RENDER COUNTRIES
-// ============================================
 function renderCountries() {
-    const grid = document.getElementById('countryGrid');
-    if (!grid) return;
-    
-    grid.innerHTML = countries.map(country => `
-        <div class="country-card" data-country-id="${country.id}" style="animation: fadeInUp 0.5s ease forwards">
-            <div class="country-flag">${country.flag}</div>
-            <div class="country-name">${country.name}</div>
-            <div class="country-formation">⚙️ ${country.formation}</div>
-            <div class="country-players">👥 ${country.players.length} Players</div>
+  const grid = document.getElementById('countriesGrid');
+  const filtered = getFiltered();
+  const visible  = filtered.slice(0, visibleCount);
+
+  document.getElementById('resultsCount').textContent =
+    `Showing ${Math.min(visibleCount, filtered.length)} of ${filtered.length} countries`;
+
+  document.getElementById('loadMoreWrap').style.display =
+    filtered.length > visibleCount ? 'flex' : 'none';
+
+  grid.innerHTML = visible.map((c, i) => `
+    <div class="country-card reveal" style="transition-delay:${(i % PAGE_SIZE) * 0.04}s"
+         data-id="${c.id}" onclick="openCountry('${c.id}')">
+      <div class="card-glow" style="--glow:${c.color}"></div>
+      <div class="card-top">
+        <div class="card-flag">${c.flag}</div>
+        <div class="card-rank-badge">#${c.rank}</div>
+      </div>
+      <div class="card-name">${c.name}</div>
+      <div class="card-nick">${c.nickname}</div>
+      <div class="card-conf-tag conf-${c.conf}">${c.conf}</div>
+      <div class="card-stats-row">
+        <div class="card-stat">
+          <span class="cs-val">${c.wc}</span>
+          <span class="cs-lbl">World Cups</span>
         </div>
-    `).join('');
-    
-    document.querySelectorAll('.country-card').forEach(card => {
-        card.addEventListener('click', () => openCountry(parseInt(card.dataset.countryId)));
-        card.addEventListener('mouseenter', (e) => {
-            e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        card.addEventListener('mouseleave', (e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-}
-
-// ============================================
-// OPEN COUNTRY
-// ============================================
-function openCountry(countryId) {
-    const country = countries.find(c => c.id === countryId);
-    if (!country) return;
-    
-    const teamSection = document.getElementById('teamSection');
-    const teamName = document.getElementById('teamName');
-    const teamFlag = document.getElementById('teamFlag');
-    const teamFormation = document.getElementById('teamFormation');
-    const playersGrid = document.getElementById('playersGrid');
-    
-    if (teamName) teamName.textContent = country.name;
-    if (teamFlag) teamFlag.textContent = country.flag;
-    if (teamFormation) teamFormation.textContent = `FORMATION: ${country.formation}`;
-    
-    if (playersGrid) {
-        playersGrid.innerHTML = country.players.map((player, index) => `
-            <div class="player-card" data-player-id="${player.id}" style="animation: fadeInUp ${0.2 + index * 0.02}s ease forwards">
-                <div class="player-image">${player.image || getRandomImage(player.name)}</div>
-                <div class="player-name">${player.name}</div>
-                <div class="player-info">${player.club} • ${player.position}</div>
-                <div class="player-stats">⚽ ${player.goals} goals • 🎯 ${player.caps} caps</div>
-            </div>
-        `).join('');
-        
-        document.querySelectorAll('.player-card').forEach(card => {
-            card.addEventListener('click', () => openPlayerModal(parseInt(card.dataset.playerId)));
-            card.addEventListener('mouseenter', (e) => {
-                e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)';
-            });
-            card.addEventListener('mouseleave', (e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
-    
-    if (teamSection) {
-        teamSection.style.display = 'block';
-        teamSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// ============================================
-// RENDER PLAYERS (ALL PLAYERS PAGE)
-// ============================================
-function renderPlayers() {
-    const playersGrid = document.getElementById('playersGrid');
-    if (!playersGrid) return;
-    
-    const allPlayers = countries.flatMap(c => c.players);
-    
-    playersGrid.innerHTML = allPlayers.map((player, index) => `
-        <div class="player-card" data-player-id="${player.id}" style="animation: fadeInUp ${0.1 + index * 0.01}s ease forwards">
-            <div class="player-image">${player.image || getRandomImage(player.name)}</div>
-            <div class="player-name">${player.name}</div>
-            <div class="player-info">${player.club} • ${player.position}</div>
-            <div class="player-stats">⚽ ${player.goals} goals • 🎯 ${player.caps} caps</div>
+        <div class="card-stat">
+          <span class="cs-val">${(c.players/1000).toFixed(1)}K</span>
+          <span class="cs-lbl">Players</span>
         </div>
-    `).join('');
-    
-    document.querySelectorAll('.player-card').forEach(card => {
-        card.addEventListener('click', () => openPlayerModal(parseInt(card.dataset.playerId)));
-        card.addEventListener('mouseenter', (e) => {
-            e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)';
-        });
-        card.addEventListener('mouseleave', (e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+        <div class="card-stat">
+          <span class="cs-val">${(c.goals/1000).toFixed(1)}K</span>
+          <span class="cs-lbl">Goals</span>
+        </div>
+      </div>
+      <div class="card-bar">
+        <div class="card-bar-fill" style="--fill:${Math.round((c.players/13000)*100)}%;--color:${c.color}"></div>
+      </div>
+      <div class="card-cta">View Nation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  `).join('');
+
+  if (window.pvObserveNew) window.pvObserveNew();
+
+  // animate bars on observe
+  grid.querySelectorAll('.card-bar-fill').forEach(bar => {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { bar.classList.add('animated'); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(bar);
+  });
 }
 
-// ============================================
-// SEARCH PLAYERS
-// ============================================
-function searchPlayers() {
-    const searchInput = document.getElementById('playerSearch');
-    if (!searchInput) return;
-    
-    const searchTerm = searchInput.value.toLowerCase();
-    const allPlayers = countries.flatMap(c => c.players);
-    const playersGrid = document.getElementById('playersGrid');
-    
-    const filtered = allPlayers.filter(player => 
-        player.name.toLowerCase().includes(searchTerm) ||
-        player.club.toLowerCase().includes(searchTerm) ||
-        player.position.toLowerCase().includes(searchTerm)
-    );
-    
-    if (playersGrid) {
-        if (filtered.length === 0) {
-            playersGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 60px;">🔍 No players found</div>';
-            return;
-        }
-        
-        playersGrid.innerHTML = filtered.map((player, index) => `
-            <div class="player-card" data-player-id="${player.id}" style="animation: fadeInUp ${0.05 * index}s ease forwards">
-                <div class="player-image">${player.image || getRandomImage(player.name)}</div>
-                <div class="player-name">${player.name}</div>
-                <div class="player-info">${player.club} • ${player.position}</div>
-                <div class="player-stats">⚽ ${player.goals} goals • 🎯 ${player.caps} caps</div>
-            </div>
-        `).join('');
-        
-        document.querySelectorAll('.player-card').forEach(card => {
-            card.addEventListener('click', () => openPlayerModal(parseInt(card.dataset.playerId)));
-        });
-    }
+function openCountry(id) {
+  // Placeholder for Part 3 detail pages
+  const c = COUNTRIES_DB.find(x => x.id === id);
+  if (!c) return;
+  showToast(`🌍 ${c.name} — Full page coming in Part 3!`);
 }
 
-// ============================================
-// OPEN PLAYER MODAL
-// ============================================
-function openPlayerModal(playerId) {
-    const allPlayers = countries.flatMap(c => c.players);
-    const player = allPlayers.find(p => p.id === playerId);
-    if (!player) return;
-    
-    const country = countries.find(c => c.players.some(p => p.id === playerId));
-    
-    const modal = document.getElementById('playerModal');
-    const playerName = document.getElementById('playerName');
-    const playerClub = document.getElementById('playerClub');
-    const playerPosition = document.getElementById('playerPosition');
-    const playerAge = document.getElementById('playerAge');
-    const playerHeight = document.getElementById('playerHeight');
-    const playerCaps = document.getElementById('playerCaps');
-    const playerGoals = document.getElementById('playerGoals');
-    const playerBio = document.getElementById('playerBio');
-    
-    if (playerName) playerName.textContent = player.name;
-    if (playerClub) playerClub.textContent = player.club;
-    if (playerPosition) playerPosition.textContent = player.position;
-    if (playerAge) playerAge.textContent = player.age;
-    if (playerHeight) playerHeight.textContent = player.height;
-    if (playerCaps) playerCaps.textContent = player.caps;
-    if (playerGoals) playerGoals.textContent = player.goals;
-    if (playerBio) playerBio.textContent = player.bio;
-    
-    if (modal) modal.style.display = 'flex';
-    
-    // Animate counter
-    animateNumber(playerCaps, 0, player.caps);
-    animateNumber(playerGoals, 0, player.goals);
+/* =============================================
+   CONFEDERATION GRID
+============================================= */
+function renderConfs() {
+  const grid = document.getElementById('confGrid');
+  grid.innerHTML = CONF_DATA.map((cf, i) => `
+    <div class="conf-card reveal" style="transition-delay:${i*0.08}s">
+      <div class="conf-emoji">${cf.emoji}</div>
+      <div class="conf-code" style="color:${cf.color}">${cf.code}</div>
+      <div class="conf-name">${cf.name}</div>
+      <div class="conf-region">${cf.region}</div>
+      <div class="conf-row">
+        <span>${cf.members} members</span>
+        <span>${cf.wcs} WC titles</span>
+      </div>
+      <div class="conf-bar-track">
+        <div class="conf-bar-fill" style="--w:${Math.round(cf.members/55*100)}%;background:${cf.color}"></div>
+      </div>
+    </div>
+  `).join('');
+  if (window.pvObserveNew) window.pvObserveNew();
 }
 
-// ============================================
-// CLOSE PLAYER MODAL
-// ============================================
-function closePlayerModal() {
-    const modal = document.getElementById('playerModal');
-    if (modal) modal.style.display = 'none';
+/* =============================================
+   TOAST
+============================================= */
+function showToast(msg) {
+  let toast = document.getElementById('pvToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'pvToast';
+    toast.className = 'pv-toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ============================================
-// ANIMATE NUMBER COUNTER
-// ============================================
-function animateNumber(element, start, end) {
-    if (!element) return;
-    let current = start;
-    const increment = end > start ? 1 : -1;
-    const duration = 1000;
-    const stepTime = Math.abs(Math.floor(duration / (end - start)));
-    
-    const timer = setInterval(() => {
-        current += increment;
-        element.textContent = current;
-        if (current === end) clearInterval(timer);
-    }, stepTime);
-}
-
-// ============================================
-// ADD CSS ANIMATIONS
-// ============================================
-function addStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .country-card, .player-card {
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            cursor: pointer;
-        }
-        
-        .country-card:hover, .player-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(0,243,255,0.3);
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// ============================================
-// INITIALIZE
-// ============================================
+/* =============================================
+   EVENT LISTENERS
+============================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    new ParticleBackground();
-    new MouseGlow();
-    addStyles();
-    renderCountries();
-    renderPlayers();
-    
-    const searchInput = document.getElementById('playerSearch');
-    if (searchInput) {
-        searchInput.addEventListener('input', searchPlayers);
-    }
-    
-    const closeBtn = document.getElementById('closeModal');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closePlayerModal);
-    }
-    
-    window.addEventListener('click', (e) => {
-        const modal = document.getElementById('playerModal');
-        if (e.target === modal) closePlayerModal();
+  renderCountries();
+  renderConfs();
+
+  // Conf tabs
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeConf = btn.dataset.conf;
+      visibleCount = PAGE_SIZE;
+      renderCountries();
     });
-    
-    console.log('🔥 PlayerVerse Initialized!');
+  });
+
+  // Search
+  const searchEl = document.getElementById('countrySearch');
+  if (searchEl) {
+    searchEl.addEventListener('input', e => {
+      searchQ = e.target.value.trim().toLowerCase();
+      visibleCount = PAGE_SIZE;
+      renderCountries();
+    });
+  }
+
+  // Sort buttons
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSort = btn.dataset.sort;
+      renderCountries();
+    });
+  });
+
+  // Load more
+  document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    renderCountries();
+  });
 });
+// PLAYERVERSE VERSION 1.0
+// PART 2 OF 3
+// players.js
+
+'use strict';
+
+/* =============================================
+   PLAYER DATABASE
+============================================= */
+const PLAYERS_DB = [
+  // Legends
+  { id:'messi',      name:'Lionel Messi',      country:'🇦🇷 Argentina', club:'Inter Miami',      pos:'FWD', era:'ACTIVE',  conf:'CONMEBOL', age:37, goals:894,  apps:1050, rating:97, ballon:8, number:10, color:'#74ACDF', desc:'The greatest of all time. Eight Ballon d\'Or awards, three World Cups entered, one lifted.' },
+  { id:'ronaldo',    name:'Cristiano Ronaldo',  country:'🇵🇹 Portugal',  club:'Al Nassr',         pos:'FWD', era:'ACTIVE',  conf:'UEFA',     age:39, goals:914,  apps:1100, rating:96, ballon:5, number:7,  color:'#006600', desc:'The most decorated goal scorer in football history. Five Ballon d\'Or, 900+ goals.' },
+  { id:'pele',       name:'Pelé',               country:'🇧🇷 Brazil',    club:'Retired',          pos:'FWD', era:'LEGEND',  conf:'CONMEBOL', age:82, goals:1283, apps:1363, rating:99, ballon:0, number:10, color:'#009C3B', desc:'The King. Three World Cups. An eternal symbol of the beautiful game.' },
+  { id:'maradona',   name:'Diego Maradona',     country:'🇦🇷 Argentina', club:'Retired',          pos:'MID', era:'LEGEND',  conf:'CONMEBOL', age:60, goals:312,  apps:491,  rating:98, ballon:1, number:10, color:'#74ACDF', desc:'The Hand of God. The Goal of the Century. The soul of Argentine football.' },
+  { id:'cruyff',     name:'Johan Cruyff',       country:'🇳🇱 Netherlands',club:'Retired',         pos:'FWD', era:'LEGEND',  conf:'UEFA',     age:68, goals:291,  apps:514,  rating:97, ballon:3, number:14, color:'#FF6600', desc:'Total Football. Three Ballon d\'Or. Revolutionary genius.' },
+  { id:'zidane',     name:'Zinedine Zidane',    country:'🇫🇷 France',    club:'Retired',          pos:'MID', era:'LEGEND',  conf:'UEFA',     age:51, goals:125,  apps:618,  rating:97, ballon:3, number:10, color:'#002395', desc:'Elegance personified. World Cup, Euro, three Champions Leagues as player and coach.' },
+  { id:'ronaldinho', name:'Ronaldinho',          country:'🇧🇷 Brazil',    club:'Retired',          pos:'MID', era:'LEGEND',  conf:'CONMEBOL', age:44, goals:280,  apps:636,  rating:96, ballon:2, number:10, color:'#009C3B', desc:'Magic in human form. He made football look like art.' },
+  { id:'mbappe',     name:'Kylian Mbappé',      country:'🇫🇷 France',    club:'Real Madrid',      pos:'FWD', era:'ACTIVE',  conf:'UEFA',     age:25, goals:348,  apps:430,  rating:95, ballon:0, number:7,  color:'#002395', desc:'The future is now. World Cup winner at 19, fastest in modern football.' },
+  { id:'haaland',    name:'Erling Haaland',     country:'🇳🇴 Norway',    club:'Man City',         pos:'FWD', era:'ACTIVE',  conf:'UEFA',     age:23, goals:271,  apps:300,  rating:94, ballon:0, number:9,  color:'#003087', desc:'A goal-scoring machine. Records fall wherever he plays.' },
+  { id:'bellingham', name:'Jude Bellingham',    country:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',   club:'Real Madrid',      pos:'MID', era:'ACTIVE',  conf:'UEFA',     age:21, goals:98,   apps:310,  rating:93, ballon:0, number:5,  color:'#FFFFFF', desc:'A generational talent. Engine, vision and goals — complete midfielder.' },
+  { id:'vinicius',   name:'Vinícius Jr.',       country:'🇧🇷 Brazil',    club:'Real Madrid',      pos:'FWD', era:'ACTIVE',  conf:'CONMEBOL', age:23, goals:145,  apps:310,  rating:93, ballon:1, number:7,  color:'#009C3B', desc:'Dazzling pace and flair. Ballon d\'Or 2024 winner.' },
+  { id:'saka',       name:'Bukayo Saka',         country:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',   club:'Arsenal',          pos:'FWD', era:'RISING',  conf:'UEFA',     age:22, goals:112,  apps:280,  rating:91, ballon:0, number:7,  color:'#EF0107', desc:'Arsenal\'s heartbeat. England\'s brightest spark.' },
+  { id:'pedri',      name:'Pedri',               country:'🇪🇸 Spain',     club:'Barcelona',        pos:'MID', era:'RISING',  conf:'UEFA',     age:22, goals:48,   apps:220,  rating:91, ballon:0, number:8,  color:'#AA151B', desc:'The heir to Iniesta\'s throne. Vision beyond his years.' },
+  { id:'yamal',      name:'Lamine Yamal',        country:'🇪🇸 Spain',     club:'Barcelona',        pos:'FWD', era:'RISING',  conf:'UEFA',     age:17, goals:38,   apps:120,  rating:90, ballon:0, number:19, color:'#AA151B', desc:'The most exciting teenager on the planet. Euro 2024 star at 16.' },
+  { id:'salah',      name:'Mohamed Salah',       country:'🇪🇬 Egypt',     club:'Liverpool',        pos:'FWD', era:'ACTIVE',  conf:'CAF',      age:32, goals:310,  apps:530,  rating:92, ballon:0, number:11, color:'#CE1126', desc:'The Egyptian King. Premier League\'s deadliest forward this decade.' },
+  { id:'kane',       name:'Harry Kane',          country:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',   club:'Bayern Munich',    pos:'FWD', era:'ACTIVE',  conf:'UEFA',     age:30, goals:340,  apps:560,  rating:92, ballon:0, number:9,  color:'#FFFFFF', desc:'England\'s all-time top scorer. A centre-forward of the highest order.' },
+  { id:'debruyne',   name:'Kevin De Bruyne',     country:'🇧🇪 Belgium',   club:'Man City',         pos:'MID', era:'ACTIVE',  conf:'UEFA',     age:32, goals:120,  apps:560,  rating:93, ballon:0, number:17, color:'#000000', desc:'The architect. Perhaps the finest creative midfielder of his generation.' },
+  { id:'lewandowski',name:'Robert Lewandowski',  country:'🇵🇱 Poland',    club:'Barcelona',        pos:'FWD', era:'ACTIVE',  conf:'UEFA',     age:35, goals:638,  apps:850,  rating:91, ballon:0, number:9,  color:'#DC143C', desc:'600+ club goals. Bundesliga\'s greatest ever striker.' },
+  { id:'osimhen',    name:'Victor Osimhen',      country:'🇳🇬 Nigeria',   club:'Galatasaray',      pos:'FWD', era:'ACTIVE',  conf:'CAF',      age:25, goals:152,  apps:260,  rating:90, ballon:0, number:9,  color:'#008751', desc:'African Footballer of the Year. Raw power meets electric finishing.' },
+  { id:'diatta',     name:'Lamine Diatta',       country:'🇸🇳 Senegal',   club:'PSG',              pos:'DEF', era:'RISING',  conf:'CAF',      age:21, goals:12,   apps:180,  rating:88, ballon:0, number:4,  color:'#00853F', desc:'Senegal\'s defensive rock of the future.' },
+  { id:'ter_stegen', name:'Marc-André ter Stegen',country:'🇩🇪 Germany',  club:'Barcelona',        pos:'GK',  era:'ACTIVE',  conf:'UEFA',     age:32, goals:0,    apps:520,  rating:91, ballon:0, number:1,  color:'#000000', desc:'World-class sweeper-keeper. Barcelona\'s last line of defence for a decade.' },
+  { id:'alisson',    name:'Alisson Becker',      country:'🇧🇷 Brazil',    club:'Liverpool',        pos:'GK',  era:'ACTIVE',  conf:'CONMEBOL', age:31, goals:1,    apps:420,  rating:92, ballon:0, number:1,  color:'#009C3B', desc:'The world\'s best goalkeeper. Calm, commanding, and occasionally scores headers.' },
+  { id:'modric',     name:'Luka Modrić',         country:'🇭🇷 Croatia',   club:'Real Madrid',      pos:'MID', era:'ACTIVE',  conf:'UEFA',     age:38, goals:87,   apps:780,  rating:91, ballon:1, number:10, color:'#FF0000', desc:'Ballon d\'Or 2018. Real Madrid\'s ageless orchestrator.' },
+  { id:'ibrahimovic',name:'Zlatan Ibrahimović',  country:'🇸🇪 Sweden',    club:'Retired',          pos:'FWD', era:'LEGEND',  conf:'UEFA',     age:42, goals:575,  apps:1001, rating:93, ballon:0, number:11, color:'#006AA7', desc:'Larger than life. 500+ club goals across 13 clubs in 9 countries. There is only one Zlatan.' },
+];
+
+/* =============================================
+   LEGENDS CAROUSEL DATA
+============================================= */
+const LEGENDS = ['messi','ronaldo','mbappe','pele','maradona','zidane','ronaldinho','cruyff']
+  .map(id => PLAYERS_DB.find(p => p.id === id));
+
+/* =============================================
+   STATE
+============================================= */
+let posFilter  = 'ALL';
+let confFilter = 'ALL';
+let eraFilter  = 'ALL';
+let sortKey    = 'rating';
+let searchQ    = '';
+let visibleCount = 12;
+const PAGE_SIZE  = 12;
+let carouselIdx  = 0;
+let carouselTimer;
+
+/* =============================================
+   RENDER LEGENDS CAROUSEL
+============================================= */
+function renderLegends() {
+  const track = document.getElementById('legendsCarousel');
+  const dots  = document.getElementById('carouselDots');
+  if (!track) return;
+
+  track.innerHTML = LEGENDS.map((p, i) => `
+    <div class="legend-card ${i === 0 ? 'active' : ''}" data-idx="${i}">
+      <div class="legend-number">${p.number}</div>
+      <div class="legend-avatar" style="background:linear-gradient(135deg,${p.color}33,${p.color}11)">
+        <div class="legend-avatar-inner" style="--c:${p.color}">${p.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+      </div>
+      <div class="legend-info">
+        <div class="legend-name">${p.name}</div>
+        <div class="legend-country">${p.country}</div>
+        <div class="legend-club">${p.club}</div>
+        <p class="legend-desc">${p.desc}</p>
+        <div class="legend-stats">
+          <div class="ls"><span class="ls-val">${p.goals.toLocaleString()}</span><span class="ls-lbl">Goals</span></div>
+          <div class="ls"><span class="ls-val">${p.apps.toLocaleString()}</span><span class="ls-lbl">Apps</span></div>
+          <div class="ls"><span class="ls-val">${p.rating}</span><span class="ls-lbl">Rating</span></div>
+          ${p.ballon > 0 ? `<div class="ls"><span class="ls-val">${p.ballon}×</span><span class="ls-lbl">Ballon d'Or</span></div>` : ''}
+        </div>
+      </div>
+      <div class="legend-bg-num">${p.number}</div>
+    </div>
+  `).join('');
+
+  dots.innerHTML = LEGENDS.map((_, i) => `<button class="dot ${i===0?'active':''}" data-i="${i}"></button>`).join('');
+
+  dots.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', () => goCarousel(+dot.dataset.i));
+  });
+
+  startCarousel();
+}
+
+function goCarousel(idx) {
+  carouselIdx = (idx + LEGENDS.length) % LEGENDS.length;
+  document.querySelectorAll('.legend-card').forEach((c, i) => c.classList.toggle('active', i === carouselIdx));
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === carouselIdx));
+  resetCarousel();
+}
+
+function startCarousel() {
+  carouselTimer = setInterval(() => goCarousel(carouselIdx + 1), 5000);
+}
+
+function resetCarousel() {
+  clearInterval(carouselTimer);
+  startCarousel();
+}
+
+/* =============================================
+   RENDER PLAYERS GRID
+============================================= */
+function getFiltered() {
+  let data = [...PLAYERS_DB];
+  if (posFilter  !== 'ALL') data = data.filter(p => p.pos  === posFilter);
+  if (confFilter !== 'ALL') data = data.filter(p => p.conf === confFilter);
+  if (eraFilter  !== 'ALL') data = data.filter(p => p.era  === eraFilter);
+  if (searchQ) data = data.filter(p =>
+    p.name.toLowerCase().includes(searchQ) ||
+    p.country.toLowerCase().includes(searchQ) ||
+    p.club.toLowerCase().includes(searchQ)
+  );
+  data.sort((a, b) => {
+    if (sortKey === 'rating') return b.rating - a.rating;
+    if (sortKey === 'goals')  return b.goals  - a.goals;
+    if (sortKey === 'name')   return a.name.localeCompare(b.name);
+    if (sortKey === 'age')    return a.age    - b.age;
+    return 0;
+  });
+  return data;
+}
+
+const POS_COLORS = { GK:'#FFD700', DEF:'#00D2FF', MID:'#00FF87', FWD:'#FF6B6B' };
+const ERA_LABELS = { ACTIVE:'● Active', LEGEND:'★ Legend', RISING:'↑ Rising' };
+
+function renderPlayers() {
+  const grid    = document.getElementById('playersGrid');
+  const filtered = getFiltered();
+  const visible  = filtered.slice(0, visibleCount);
+
+  document.getElementById('playerResultsCount').textContent =
+    `Showing ${Math.min(visibleCount, filtered.length)} of ${filtered.length} players`;
+  document.getElementById('playerLoadWrap').style.display =
+    filtered.length > visibleCount ? 'flex' : 'none';
+
+  grid.innerHTML = visible.map((p, i) => `
+    <div class="player-card reveal" style="transition-delay:${(i%PAGE_SIZE)*0.04}s;--accent:${p.color}"
+         onclick="openPlayer('${p.id}')">
+      <div class="pc-top">
+        <div class="pc-number">${p.number}</div>
+        <div class="pc-era ${p.era.toLowerCase()}">${ERA_LABELS[p.era]}</div>
+      </div>
+      <div class="pc-avatar" style="background:linear-gradient(135deg,${p.color}40,${p.color}15)">
+        <div class="pc-initials" style="color:${p.color}">${p.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+        <div class="pc-pos-badge" style="background:${POS_COLORS[p.pos]}">${p.pos}</div>
+      </div>
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-meta">${p.country} · ${p.club}</div>
+      <div class="pc-stats">
+        <div class="pc-stat"><span class="pcs-v">${p.goals}</span><span class="pcs-l">Goals</span></div>
+        <div class="pc-stat"><span class="pcs-v">${p.apps}</span><span class="pcs-l">Apps</span></div>
+        <div class="pc-stat"><span class="pcs-v">${p.rating}</span><span class="pcs-l">Rating</span></div>
+      </div>
+      <div class="pc-rating-bar">
+        <div class="pc-rating-fill" style="--w:${p.rating}%;--c:${p.color}"></div>
+      </div>
+      <div class="pc-cta">View Profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  `).join('');
+
+  if (window.pvObserveNew) window.pvObserveNew();
+
+  grid.querySelectorAll('.pc-rating-fill').forEach(bar => {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { bar.classList.add('animated'); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(bar);
+  });
+}
+
+/* =============================================
+   PLAYER MODAL
+============================================= */
+function openPlayer(id) {
+  const p = PLAYERS_DB.find(x => x.id === id);
+  if (!p) return;
+  const modal   = document.getElementById('playerModal');
+  const content = document.getElementById('modalContent');
+
+  content.innerHTML = `
+    <div class="modal-header" style="--c:${p.color}">
+      <div class="modal-num">${p.number}</div>
+      <div class="modal-avatar-big" style="background:linear-gradient(135deg,${p.color}50,${p.color}20)">
+        <div class="modal-initials" style="color:${p.color}">${p.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+      </div>
+      <div class="modal-name">${p.name}</div>
+      <div class="modal-meta-row">
+        <span class="modal-country">${p.country}</span>
+        <span class="modal-dot">·</span>
+        <span class="modal-club">${p.club}</span>
+        <span class="modal-dot">·</span>
+        <span class="modal-pos" style="color:${POS_COLORS[p.pos]}">${p.pos}</span>
+        <span class="modal-dot">·</span>
+        <span class="modal-age">Age ${p.age}</span>
+      </div>
+      <div class="modal-era ${p.era.toLowerCase()}">${ERA_LABELS[p.era]}</div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc">${p.desc}</p>
+      <div class="modal-stats-grid">
+        <div class="modal-stat"><span class="ms-v">${p.goals.toLocaleString()}</span><span class="ms-l">Goals</span></div>
+        <div class="modal-stat"><span class="ms-v">${p.apps.toLocaleString()}</span><span class="ms-l">Appearances</span></div>
+        <div class="modal-stat"><span class="ms-v">${p.rating}</span><span class="ms-l">Rating</span></div>
+        <div class="modal-stat"><span class="ms-v">${p.age}</span><span class="ms-l">Age</span></div>
+        ${p.ballon > 0 ? `<div class="modal-stat"><span class="ms-v">${p.ballon}×</span><span class="ms-l">Ballon d'Or</span></div>` : ''}
+      </div>
+      <div class="modal-rating-section">
+        <div class="modal-rating-label">Overall Rating</div>
+        <div class="modal-rating-track">
+          <div class="modal-rating-bar" style="--w:${p.rating}%;--c:${p.color}"></div>
+        </div>
+        <div class="modal-rating-val" style="color:${p.color}">${p.rating}</div>
+      </div>
+      <p class="modal-part3-hint">⚡ Full stats, career timeline & match history coming in Part 3</p>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    modal.querySelector('.modal-rating-bar')?.classList.add('animated');
+  }, 200);
+}
+
+function closePlayer() {
+  document.getElementById('playerModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* =============================================
+   PITCH VISUAL ANIMATION
+============================================= */
+function initPitchNodes() {
+  document.querySelectorAll('.position-node').forEach(node => {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { node.classList.add('visible'); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(node);
+  });
+}
+
+/* =============================================
+   EVENTS
+============================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  renderLegends();
+  renderPlayers();
+  initPitchNodes();
+
+  // Filters
+  document.getElementById('posFilter')?.addEventListener('change', e => {
+    posFilter = e.target.value; visibleCount = PAGE_SIZE; renderPlayers();
+  });
+  document.getElementById('confFilter')?.addEventListener('change', e => {
+    confFilter = e.target.value; visibleCount = PAGE_SIZE; renderPlayers();
+  });
+  document.getElementById('eraFilter')?.addEventListener('change', e => {
+    eraFilter = e.target.value; visibleCount = PAGE_SIZE; renderPlayers();
+  });
+  document.getElementById('playerSearch')?.addEventListener('input', e => {
+    searchQ = e.target.value.trim().toLowerCase(); visibleCount = PAGE_SIZE; renderPlayers();
+  });
+
+  // Sort
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      sortKey = btn.dataset.sort;
+      renderPlayers();
+    });
+  });
+
+  // Load more
+  document.getElementById('playerLoadBtn')?.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE; renderPlayers();
+  });
+
+  // Modal close
+  document.getElementById('modalClose')?.addEventListener('click', closePlayer);
+  document.getElementById('modalBackdrop')?.addEventListener('click', closePlayer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePlayer(); });
+});
+// PLAYERVERSE VERSION 1.0
+// PART 2 OF 3
+// shared.js — runs on every page
+
+'use strict';
+
+/* =============================================
+   MOUSE LIGHT
+============================================= */
+(function initMouseLight() {
+  const light = document.getElementById('mouseLight');
+  if (!light) return;
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let lx = mx, ly = my;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function loop() {
+    lx += (mx - lx) * 0.08;
+    ly += (my - ly) * 0.08;
+    light.style.left = lx + 'px';
+    light.style.top  = ly + 'px';
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* =============================================
+   PARTICLES
+============================================= */
+(function initParticles() {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COUNT = 80;
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + 10;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = -(Math.random() * 0.5 + 0.15);
+      this.r = Math.random() * 1.2 + 0.2;
+      this.life = 0; this.maxLife = Math.random() * 280 + 180;
+      const p = [[0,210,255],[0,255,135],[255,215,0],[255,255,255]];
+      this.color = p[Math.floor(Math.random() * p.length)];
+    }
+    update() { this.x += this.vx; this.y += this.vy; this.life++; if (this.life > this.maxLife || this.y < -10) this.reset(); }
+    draw() {
+      const pr = this.life / this.maxLife;
+      const a = pr < 0.1 ? pr * 10 * 0.5 : pr > 0.8 ? (1 - pr) * 5 * 0.5 : 0.5;
+      ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color.join(',')},${a})`;
+      ctx.shadowColor = `rgba(${this.color.join(',')},0.4)`; ctx.shadowBlur = 5;
+      ctx.fill();
+    }
+  }
+
+  const particles = Array.from({ length: COUNT }, () => new Particle());
+  function loop() {
+    ctx.clearRect(0, 0, W, H); ctx.shadowBlur = 0;
+    // connections
+    for (let i = 0; i < particles.length; i++) for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 100) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(0,210,255,${(1-d/100)*0.1})`; ctx.lineWidth = 0.4; ctx.stroke(); }
+    }
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* =============================================
+   NAV SCROLL
+============================================= */
+(function initNav() {
+  const nav = document.getElementById('mainNav');
+  if (!nav) return;
+  const onScroll = () => { nav.classList.toggle('scrolled', window.scrollY > 60); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Hamburger
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+  }
+})();
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+(function initReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  function observe() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+  }
+  observe();
+  // re-observe after dynamic content
+  window.pvObserveNew = observe;
+})();
+// PLAYERVERSE VERSION 1.0
+// PART 1 OF 3
+
+'use strict';
+
+/* =============================================
+   LOADER
+============================================= */
+(function initLoader() {
+  const loader  = document.getElementById('loader');
+  const bar     = document.getElementById('loaderBar');
+  const text    = document.getElementById('loaderText');
+
+  const messages = [
+    'INITIALISING UNIVERSE...',
+    'LOADING PLAYER DATABASE...',
+    'MAPPING CONTINENTS...',
+    'CALIBRATING ORBIT...',
+    'ENTERING PLAYERVERSE...',
+  ];
+
+  let progress = 0;
+  let msgIndex = 0;
+
+  const interval = setInterval(() => {
+    progress += Math.random() * 18 + 4;
+    if (progress > 100) progress = 100;
+
+    bar.style.width = progress + '%';
+
+    const newIndex = Math.min(
+      Math.floor((progress / 100) * messages.length),
+      messages.length - 1
+    );
+    if (newIndex !== msgIndex) {
+      msgIndex = newIndex;
+      text.textContent = messages[msgIndex];
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        document.body.classList.add('loaded');
+        initHeroReveal();
+      }, 400);
+    }
+  }, 90);
+})();
+
+/* =============================================
+   HERO REVEAL + TYPEWRITER
+============================================= */
+function initHeroReveal() {
+  const content = document.querySelector('.hero-content');
+  content.classList.add('visible');
+
+  const subtitleEl = document.getElementById('heroSubtitle');
+  const phrases = [
+    'The Ultimate Football Universe',
+    'Every Player. Every Nation.',
+    'From Kickoff to Legend.',
+    'The Beautiful Game. Everywhere.',
+  ];
+
+  let phraseIdx = 0;
+  let charIdx   = 0;
+  let deleting  = false;
+  let cursor    = document.createElement('span');
+  cursor.classList.add('cursor');
+
+  function type() {
+    const current = phrases[phraseIdx];
+
+    if (!deleting) {
+      charIdx++;
+      subtitleEl.textContent = current.slice(0, charIdx);
+      subtitleEl.appendChild(cursor);
+
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+      setTimeout(type, 50 + Math.random() * 30);
+    } else {
+      charIdx--;
+      subtitleEl.textContent = current.slice(0, charIdx);
+      subtitleEl.appendChild(cursor);
+
+      if (charIdx === 0) {
+        deleting  = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(type, 300);
+        return;
+      }
+      setTimeout(type, 28);
+    }
+  }
+
+  setTimeout(type, 600);
+}
+
+/* =============================================
+   MOUSE LIGHT + CUSTOM CURSOR
+============================================= */
+(function initMouseLight() {
+  const light = document.getElementById('mouseLight');
+  let mx = window.innerWidth / 2;
+  let my = window.innerHeight / 2;
+  let lx = mx, ly = my;
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  function animateLight() {
+    lx += (mx - lx) * 0.08;
+    ly += (my - ly) * 0.08;
+    light.style.left = lx + 'px';
+    light.style.top  = ly + 'px';
+    requestAnimationFrame(animateLight);
+  }
+  animateLight();
+})();
+
+/* =============================================
+   PARTICLE CANVAS
+============================================= */
+(function initParticles() {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COUNT = 120;
+  const particles = [];
+
+  class Particle {
+    constructor() { this.reset(true); }
+
+    reset(initial = false) {
+      this.x  = Math.random() * W;
+      this.y  = initial ? Math.random() * H : H + 10;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = -(Math.random() * 0.6 + 0.2);
+      this.r  = Math.random() * 1.5 + 0.3;
+      this.life    = 0;
+      this.maxLife = Math.random() * 300 + 200;
+      const palette = [
+        [0, 210, 255],
+        [0, 255, 135],
+        [255, 215, 0],
+        [255, 255, 255],
+      ];
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+    }
+
+    update() {
+      this.x    += this.vx;
+      this.y    += this.vy;
+      this.life += 1;
+      if (this.life > this.maxLife || this.y < -10) this.reset();
+    }
+
+    draw() {
+      const progress = this.life / this.maxLife;
+      const alpha    = progress < 0.1
+        ? progress * 10 * 0.6
+        : progress > 0.8
+          ? (1 - progress) * 5 * 0.6
+          : 0.6;
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color[0]},${this.color[1]},${this.color[2]},${alpha})`;
+      ctx.shadowColor = `rgba(${this.color[0]},${this.color[1]},${this.color[2]},0.5)`;
+      ctx.shadowBlur  = 6;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+  // Connecting lines
+  function drawConnections() {
+    const maxDist = 120;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,210,255,${alpha})`;
+          ctx.lineWidth   = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.shadowBlur = 0;
+    drawConnections();
+    for (const p of particles) { p.update(); p.draw(); }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* =============================================
+   NAV SCROLL EFFECT
+============================================= */
+(function initNav() {
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else                      nav.classList.remove('scrolled');
+  }, { passive: true });
+})();
+
+/* =============================================
+   PARALLAX
+============================================= */
+(function initParallax() {
+  const hero  = document.getElementById('hero');
+  const globe = document.getElementById('globeContainer');
+
+  window.addEventListener('scroll', () => {
+    const sy = window.scrollY;
+
+    // Hero parallax
+    if (hero) {
+      const heroContent = hero.querySelector('.hero-content');
+      if (heroContent) {
+        heroContent.style.transform = `translateY(${sy * 0.28}px)`;
+      }
+    }
+
+    // Globe subtle float
+    if (globe) {
+      const section    = document.getElementById('globe-section');
+      const rect       = section.getBoundingClientRect();
+      const progress   = -rect.top / (rect.height + window.innerHeight);
+      globe.style.transform = `translateY(${progress * -40}px)`;
+    }
+  }, { passive: true });
+})();
+
+/* =============================================
+   ORBIT DOTS
+============================================= */
+(function initOrbitDots() {
+  const container = document.getElementById('orbitDots');
+  if (!container) return;
+
+  const COUNT = 12;
+  for (let i = 0; i < COUNT; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('orbit-dot');
+
+    const angle  = (i / COUNT) * 360;
+    const radius = 50; // % from center
+    const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+    const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+
+    dot.style.cssText = `
+      left: ${x}%;
+      top:  ${y}%;
+      width:  ${i % 3 === 0 ? 5 : 3}px;
+      height: ${i % 3 === 0 ? 5 : 3}px;
+      opacity: ${0.3 + (i % 4) * 0.15};
+      margin: -2px 0 0 -2px;
+    `;
+    container.appendChild(dot);
+  }
+})();
+
+/* =============================================
+   ANIMATED COUNTERS
+============================================= */
+(function initCounters() {
+  const counters = document.querySelectorAll('.counter');
+  let started    = false;
+
+  function formatNum(val, max) {
+    if (max >= 1000000) return (val / 1000000).toFixed(1) + 'M';
+    if (max >= 100000)  return (val / 1000).toFixed(0) + 'K';
+    return Math.round(val).toLocaleString();
+  }
+
+  function startCounters() {
+    if (started) return;
+    started = true;
+
+    counters.forEach((el) => {
+      const target   = parseInt(el.dataset.val, 10);
+      const duration = 2200;
+      const start    = performance.now();
+
+      function step(now) {
+        const elapsed  = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = formatNum(eased * target, target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = formatNum(target, target);
+      }
+      requestAnimationFrame(step);
+    });
+
+    // Animate bars
+    document.querySelectorAll('.stat-bar-fill').forEach((bar) => {
+      setTimeout(() => bar.classList.add('animated'), 200);
+    });
+  }
+
+  // Intersection observer
+  const section = document.getElementById('stats-section');
+  if (!section) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) startCounters();
+    },
+    { threshold: 0.25 }
+  );
+  observer.observe(section);
+})();
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+(function initReveal() {
+  // Add reveal class to key elements
+  const targets = [
+    '#globe-section .globe-badge',
+    '#globe-section .globe-heading',
+    '#globe-section .globe-body',
+    '#globe-section .globe-stat-row',
+    '#stats-section .stats-header',
+    '.stat-card',
+    '#footer-cta .footer-eyebrow',
+    '#footer-cta .footer-title',
+    '#footer-cta .footer-body',
+    '#footer-cta .btn-primary',
+  ];
+
+  targets.forEach((selector, idx) => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.classList.add('reveal');
+      if (i > 0) el.classList.add(`reveal-delay-${Math.min(i, 4)}`);
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+})();
+
+/* =============================================
+   DYNAMIC BACKGROUND GRADIENT (follows scroll)
+============================================= */
+(function initBgGradient() {
+  const body = document.body;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const progress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const hue1 = Math.round(200 + progress * 60);  // cyan → green
+      const hue2 = Math.round(160 - progress * 30);
+      body.style.background = `
+        radial-gradient(
+          ellipse 100% 60% at 50% ${20 + progress * 60}%,
+          hsl(${hue1}, 80%, 4%) 0%,
+          hsl(${hue2}, 50%, 2%) 50%,
+          #050810 100%
+        )`;
+      ticking = false;
+    });
+  }, { passive: true });
+})();
+
+/* =============================================
+   EARTH MOUSE PARALLAX (subtle tilt)
+============================================= */
+(function initEarthTilt() {
+  const earth = document.getElementById('earth');
+  if (!earth) return;
+
+  document.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth  / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;
+    const dy = (e.clientY - cy) / cy;
+
+    earth.style.animationPlayState = 'running';
+    // Layered on top of existing CSS keyframe spin
+    earth.style.transform = `rotateY(${dx * 12}deg) rotateX(${15 - dy * 8}deg)`;
+  });
+
+  document.addEventListener('mouseleave', () => {
+    earth.style.transform = '';
+  });
+})();
+
+/* =============================================
+   HERO TITLE GLITCH ON HOVER
+============================================= */
+(function initTitleGlitch() {
+  const lines = document.querySelectorAll('.title-line');
+  lines.forEach((line) => {
+    line.addEventListener('mouseenter', () => {
+      line.style.filter = 'drop-shadow(0 0 30px rgba(0,210,255,0.8))';
+      line.style.transform = `skewX(${(Math.random() - 0.5) * 2}deg)`;
+      setTimeout(() => {
+        line.style.filter    = '';
+        line.style.transform = '';
+      }, 180);
+    });
+  });
+})();
